@@ -166,6 +166,30 @@
     return parts.length ? "?" + parts.join("&") : "";
   }
 
+  // Lista de problemas de um produto do JSON; vazia quando está tudo certo.
+  function validateProduct(p) {
+    var errors = [];
+    function isText(v) { return typeof v === "string" && v.trim() !== ""; }
+    if (!p || typeof p !== "object") return ["não é um objeto"];
+    if (!isText(p.slug) || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug)) errors.push("slug inválido (use só a-z, 0-9 e hífen)");
+    if (!isText(p.nome)) errors.push("nome ausente");
+    if (GRUPOS.indexOf(p.grupo) === -1) errors.push("grupo deve ser " + GRUPOS.join(" ou "));
+    if (!isText(p.tipo)) errors.push("tipo ausente");
+    if (CONDICOES.indexOf(p.condicao) === -1) errors.push("condicao deve ser " + CONDICOES.join(" ou "));
+    if (typeof p.preco !== "number" || !(p.preco > 0)) errors.push("preco deve ser um número maior que 0");
+    if (!isText(p.adicionadoEm) || !/^\d{4}-\d{2}-\d{2}$/.test(p.adicionadoEm)) errors.push("adicionadoEm deve estar no formato AAAA-MM-DD");
+    if (!Array.isArray(p.imagens) || !p.imagens.length || !p.imagens.every(isText)) errors.push("imagens deve ter pelo menos 1 caminho");
+    if (p.linha !== undefined && (!isText(p.linha) || p.linha.indexOf(",") !== -1)) errors.push("linha não pode ser vazia nem conter vírgula");
+    if (p.precoOriginal !== undefined && typeof p.precoOriginal !== "number") errors.push("precoOriginal deve ser um número");
+    if (p.parcelamento !== undefined && !isText(p.parcelamento)) errors.push("parcelamento deve ser texto");
+    if (p.estoque !== undefined && !(Number.isInteger(p.estoque) && p.estoque >= 0)) errors.push("estoque deve ser um inteiro ≥ 0");
+    if (p.especificacoes !== undefined && !(Array.isArray(p.especificacoes) && p.especificacoes.every(function (e) {
+      return e && isText(e.rotulo) && isText(e.valor);
+    }))) errors.push("especificacoes deve ser uma lista de { rotulo, valor }");
+    if (p.tags !== undefined && !(Array.isArray(p.tags) && p.tags.every(isText))) errors.push("tags deve ser uma lista de textos");
+    return errors;
+  }
+
   var api = {
     GRUPOS: GRUPOS,
     CONDICOES: CONDICOES,
@@ -182,7 +206,8 @@
     formatPrice: formatPrice,
     relatedProducts: relatedProducts,
     stateFromQuery: stateFromQuery,
-    stateToQuery: stateToQuery
+    stateToQuery: stateToQuery,
+    validateProduct: validateProduct
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
