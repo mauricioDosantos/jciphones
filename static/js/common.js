@@ -56,6 +56,8 @@
 
   var CONDICAO_LABEL = { novo: "Novo", seminovo: "Seminovo" };
 
+  var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.14L2 22l5.02-1.6A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-2.98.95.95-2.9-.2-.3a8.2 8.2 0 1 1 6.7 3.58z"/><path d="M16.5 14.2c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.63.15-.18.3-.72.95-.88 1.14-.16.2-.32.22-.6.07-.3-.15-1.24-.46-2.36-1.45-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.45.13-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.63-1.52-.87-2.08-.23-.54-.46-.46-.63-.47h-.54c-.19 0-.5.07-.75.36-.26.3-.99.97-.99 2.36 0 1.39 1.01 2.73 1.15 2.92.14.2 1.98 3.03 4.8 4.25.67.29 1.2.46 1.6.59.68.22 1.3.19 1.78.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.37-.07-.12-.26-.2-.55-.34z"/></svg>';
+
   var catalogCache = {};
 
   // Carrega o JSON do catálogo; produtos com erro são descartados com aviso no console.
@@ -81,7 +83,7 @@
   }
 
   function productMessage(p) {
-    return "Olá! Tenho interesse no " + p.nome + " (" + CONDICAO_LABEL[p.condicao] + ") por " +
+    return "Olá! Tenho interesse neste produto: " + p.nome + " (" + CONDICAO_LABEL[p.condicao] + "), " +
       JCCore.formatPrice(p.preco) + ". Ainda está disponível?";
   }
 
@@ -143,6 +145,7 @@
   window.JC = {
     WA_NUMBER: WA_NUMBER,
     CONDICAO_LABEL: CONDICAO_LABEL,
+    WA_ICON: WA_ICON,
     waUrl: waUrl,
     track: track,
     bindWaLinks: bindWaLinks,

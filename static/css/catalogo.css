@@ -396,12 +396,12 @@ html:not(.js) .catalog-toolbar { display: none; }
 }
 
 /* ---------- Ficha do produto ---------- */
-.product-page { padding: calc(var(--nav-h) + 20px) 0 0; }
+.product-page { padding: calc(var(--nav-h) + 12px) 0 64px; }
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   padding: 8px 4px;
   font-size: 15px;
   font-weight: 500;
@@ -414,3 +414,46 @@ html:not(.js) .catalog-toolbar { display: none; }
 .product-detail-skeleton .product-media { border-radius: var(--radius-lg); }
 .product-detail-skeleton .sk-line { margin-bottom: 14px; }
 @media (min-width: 900px) { .product-detail-skeleton { grid-template-columns: 1.1fr 1fr; gap: 56px; } }
+
+.pd { display: grid; gap: 24px; }
+@media (min-width: 900px) {
+  .pd { grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+  .pd-info { position: sticky; top: calc(var(--nav-h) + 24px); }
+}
+.pd-main { border-radius: var(--radius-lg); }
+@media (max-width: 899px) {
+  /* Mantém o botão de compra perto da dobra em celulares. */
+  .pd-main { aspect-ratio: auto; height: min(88vw, 40vh); }
+}
+
+.pd-info { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.pd-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.pd-name {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+.pd-info .price-old { font-size: 15px; }
+.pd-info .price-now { font-size: clamp(1.9rem, 5.5vw, 2.4rem); }
+.pd-info .price-installments { font-size: 15px; }
+
+.pd-cta { margin-top: 6px; }
+.pd-cta svg { width: 22px; height: 22px; }
+.btn-whatsapp.pd-cta { box-shadow: 0 12px 30px -12px rgba(37, 211, 102, 0.8); }
+.pd-cta-note { margin-top: -4px; text-align: center; font-size: 13px; color: var(--text-secondary); }
+
+.pd-specs { margin-top: 12px; padding: 0; }
+.pd-specs h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+.pd-specs dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.pd-specs dt { color: var(--text-secondary); }
+.pd-specs dd { font-weight: 500; text-align: right; }
+
+.product-page .catalog-state { margin-bottom: 64px; }
