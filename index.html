@@ -7,6 +7,15 @@
   <meta name="description" content="JC Iphones: iPhones novos e seminovos, iPads, AirPods, Apple Watch, capas e acessórios, com assistência técnica especializada. José de Freitas - PI.">
   <link rel="icon" type="image/jpeg" href="static/logo.jpg">
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ1ECSJ4RF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FJ1ECSJ4RF');
+  </script>
+
   <meta property="og:title" content="JC Iphones — Tudo o que é Apple, em um só lugar">
   <meta property="og:description" content="iPhones novos e seminovos, iPads, AirPods, Apple Watch e acessórios, com assistência técnica especializada.">
   <meta property="og:type" content="website">
@@ -930,11 +939,78 @@
         return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(message);
       }
 
+      function track(eventName, params) {
+        if (typeof gtag === "function") gtag("event", eventName, params || {});
+      }
+
       document.querySelectorAll("[data-wa-text]").forEach(function (link) {
         link.href = waUrl(link.getAttribute("data-wa-text"));
         link.target = "_blank";
         link.rel = "noopener";
+        link.addEventListener("click", function () {
+          track("whatsapp_click", {
+            link_text: link.getAttribute("data-wa-text"),
+            link_location: link.closest("section, footer, nav") ? link.closest("section, footer, nav").id || link.closest("section, footer, nav").tagName.toLowerCase() : "unknown"
+          });
+        });
       });
+
+      // Cliques em navegação (menu desktop e mobile)
+      document.querySelectorAll("nav a[href^='#'], #mobileMenu a[href^='#']").forEach(function (link) {
+        link.addEventListener("click", function () {
+          track("nav_click", { link_text: link.textContent.trim(), link_url: link.getAttribute("href") });
+        });
+      });
+
+      // Cliques em qualquer outro botão/CTA da página
+      document.querySelectorAll(".btn:not([data-wa-text])").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          track("cta_click", { link_text: btn.textContent.trim() });
+        });
+      });
+
+      // Visualização de cada seção (funil de rolagem por bloco)
+      if ("IntersectionObserver" in window) {
+        var sectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.target.id) {
+              track("section_view", { section_id: entry.target.id });
+              sectionObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        document.querySelectorAll("main section[id]").forEach(function (section) {
+          sectionObserver.observe(section);
+        });
+      }
+
+      // Profundidade de rolagem (25/50/75/100%)
+      (function () {
+        var marks = [25, 50, 75, 100];
+        var fired = {};
+        window.addEventListener("scroll", function () {
+          var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          if (scrollable <= 0) return;
+          var pct = Math.round((window.scrollY / scrollable) * 100);
+          marks.forEach(function (mark) {
+            if (pct >= mark && !fired[mark]) {
+              fired[mark] = true;
+              track("scroll_depth", { percent: mark });
+            }
+          });
+        }, { passive: true });
+      })();
+
+      // Tempo de permanência na página (ping a cada 30s enquanto visível)
+      (function () {
+        var seconds = 0;
+        setInterval(function () {
+          if (document.visibilityState === "visible") {
+            seconds += 30;
+            track("time_on_page", { seconds: seconds });
+          }
+        }, 30000);
+      })();
 
       document.getElementById("year").textContent = new Date().getFullYear();
 
