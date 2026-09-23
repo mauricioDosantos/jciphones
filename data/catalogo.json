@@ -1,0 +1,236 @@
+{
+  "atualizadoEm": "2026-09-23",
+  "produtos": [
+    {
+      "slug": "iphone-15-pro-max-256gb-novo",
+      "nome": "iPhone 15 Pro Max 256GB",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 15",
+      "condicao": "novo",
+      "preco": 7699,
+      "precoOriginal": 8999,
+      "parcelamento": "12x de R$ 641,58",
+      "estoque": 1,
+      "adicionadoEm": "2026-09-21",
+      "imagens": [
+        "static/produtos/iphone-15-pro-max-256gb-novo/1.svg",
+        "static/produtos/iphone-15-pro-max-256gb-novo/2.svg",
+        "static/produtos/iphone-15-pro-max-256gb-novo/3.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Armazenamento", "valor": "256GB" },
+        { "rotulo": "Cor", "valor": "Titânio Natural" },
+        { "rotulo": "Tela", "valor": "6,7\" Super Retina XDR" },
+        { "rotulo": "Chip", "valor": "A17 Pro" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP + 12MP" }
+      ],
+      "tags": ["Lacrado"]
+    },
+    {
+      "slug": "iphone-16-128gb-novo",
+      "nome": "iPhone 16 128GB",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 16",
+      "condicao": "novo",
+      "preco": 5999,
+      "parcelamento": "12x de R$ 499,92",
+      "adicionadoEm": "2026-09-22",
+      "imagens": [
+        "static/produtos/iphone-16-128gb-novo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Armazenamento", "valor": "128GB" },
+        { "rotulo": "Cor", "valor": "Ultramarino" },
+        { "rotulo": "Tela", "valor": "6,1\" Super Retina XDR" },
+        { "rotulo": "Chip", "valor": "A18" }
+      ],
+      "tags": ["Lacrado"]
+    },
+    {
+      "slug": "iphone-15-128gb-seminovo",
+      "nome": "iPhone 15 128GB",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 15",
+      "condicao": "seminovo",
+      "preco": 4299,
+      "estoque": 2,
+      "adicionadoEm": "2026-09-18",
+      "imagens": [
+        "static/produtos/iphone-15-128gb-seminovo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Armazenamento", "valor": "128GB" },
+        { "rotulo": "Bateria", "valor": "92%" },
+        { "rotulo": "Cor", "valor": "Preto" },
+        { "rotulo": "Estado", "valor": "Excelente, sem marcas de uso" }
+      ]
+    },
+    {
+      "slug": "iphone-13-128gb-seminovo",
+      "nome": "iPhone 13 128GB",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 13",
+      "condicao": "seminovo",
+      "preco": 2799,
+      "precoOriginal": 3199,
+      "parcelamento": "10x de R$ 279,90",
+      "adicionadoEm": "2026-09-15",
+      "imagens": [
+        "static/produtos/iphone-13-128gb-seminovo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Armazenamento", "valor": "128GB" },
+        { "rotulo": "Bateria", "valor": "88%" },
+        { "rotulo": "Cor", "valor": "Meia-noite" }
+      ],
+      "tags": ["Promoção"]
+    },
+    {
+      "slug": "iphone-13-pro-256gb-seminovo",
+      "nome": "iPhone 13 Pro 256GB",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 13",
+      "condicao": "seminovo",
+      "preco": 3599,
+      "estoque": 3,
+      "adicionadoEm": "2026-09-10",
+      "imagens": [
+        "static/produtos/iphone-13-pro-256gb-seminovo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Armazenamento", "valor": "256GB" },
+        { "rotulo": "Bateria", "valor": "86%" },
+        { "rotulo": "Cor", "valor": "Azul-sierra" }
+      ]
+    },
+    {
+      "slug": "iphone-11-64gb-seminovo",
+      "nome": "iPhone 11 64GB",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 11",
+      "condicao": "seminovo",
+      "preco": 1699,
+      "estoque": 0,
+      "adicionadoEm": "2026-09-01",
+      "imagens": [
+        "static/produtos/iphone-11-64gb-seminovo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Armazenamento", "valor": "64GB" },
+        { "rotulo": "Bateria", "valor": "84%" }
+      ]
+    },
+    {
+      "slug": "macbook-air-m2-256gb-seminovo",
+      "nome": "MacBook Air M2 13\" 256GB",
+      "grupo": "dispositivo",
+      "tipo": "notebook",
+      "linha": "MacBook Air",
+      "condicao": "seminovo",
+      "preco": 5499,
+      "parcelamento": "12x de R$ 458,25",
+      "adicionadoEm": "2026-09-12",
+      "imagens": [
+        "static/produtos/macbook-air-m2-256gb-seminovo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Chip", "valor": "Apple M2" },
+        { "rotulo": "Memória", "valor": "8GB" },
+        { "rotulo": "Armazenamento", "valor": "256GB SSD" },
+        { "rotulo": "Ciclos de bateria", "valor": "112" }
+      ]
+    },
+    {
+      "slug": "caixa-jbl-flip-6-novo",
+      "nome": "Caixa de Som JBL Flip 6",
+      "grupo": "dispositivo",
+      "tipo": "caixa-de-som",
+      "condicao": "novo",
+      "preco": 699,
+      "adicionadoEm": "2026-09-05",
+      "imagens": [
+        "static/produtos/caixa-jbl-flip-6-novo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Potência", "valor": "30W RMS" },
+        { "rotulo": "Bateria", "valor": "Até 12h" },
+        { "rotulo": "Resistência", "valor": "IP67" }
+      ]
+    },
+    {
+      "slug": "airpods-pro-2-novo",
+      "nome": "AirPods Pro (2ª geração) USB-C",
+      "grupo": "acessorio",
+      "tipo": "fone",
+      "linha": "AirPods",
+      "condicao": "novo",
+      "preco": 1499,
+      "precoOriginal": 1899,
+      "adicionadoEm": "2026-09-20",
+      "imagens": [
+        "static/produtos/airpods-pro-2-novo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Cancelamento de ruído", "valor": "Sim" },
+        { "rotulo": "Conector", "valor": "USB-C" },
+        { "rotulo": "Bateria", "valor": "Até 6h (30h com estojo)" }
+      ],
+      "tags": ["Lacrado"]
+    },
+    {
+      "slug": "apple-watch-series-9-45mm-seminovo",
+      "nome": "Apple Watch Series 9 45mm",
+      "grupo": "acessorio",
+      "tipo": "apple-watch",
+      "linha": "Apple Watch",
+      "condicao": "seminovo",
+      "preco": 1999,
+      "estoque": 1,
+      "adicionadoEm": "2026-09-17",
+      "imagens": [
+        "static/produtos/apple-watch-series-9-45mm-seminovo/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tamanho", "valor": "45mm" },
+        { "rotulo": "Bateria", "valor": "95%" },
+        { "rotulo": "Pulseira", "valor": "Esportiva Meia-noite" }
+      ]
+    },
+    {
+      "slug": "capa-silicone-iphone-15",
+      "nome": "Capa de Silicone iPhone 15",
+      "grupo": "acessorio",
+      "tipo": "capa",
+      "condicao": "novo",
+      "preco": 89,
+      "adicionadoEm": "2026-09-19",
+      "imagens": [
+        "static/produtos/capa-silicone-iphone-15/1.svg"
+      ]
+    },
+    {
+      "slug": "carregador-apple-20w-usb-c",
+      "nome": "Carregador Apple 20W USB-C",
+      "grupo": "acessorio",
+      "tipo": "carregador",
+      "condicao": "novo",
+      "preco": 149,
+      "parcelamento": "3x de R$ 49,67",
+      "adicionadoEm": "2026-09-08",
+      "imagens": [
+        "static/produtos/carregador-apple-20w-usb-c/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Potência", "valor": "20W" },
+        { "rotulo": "Conector", "valor": "USB-C" }
+      ],
+      "tags": ["Original"]
+    }
+  ]
+}
