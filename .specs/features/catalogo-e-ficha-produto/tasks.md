@@ -140,9 +140,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 - [ ] Produto sem `linha` fica fora quando há filtro de linha ativo
 - [ ] `sortProducts` não altera o array original; "recente" desempata por nome
 - [ ] `linesFor` ordena "iPhone 9" antes de "iPhone 13"
-- [ ] Tests pass: `node --test tests/`
+- [ ] Tests pass: `node --test`
 
-**Verify**: `node --test tests/` → todos `ok`, 0 falhas.
+**Verify**: `node --test` → todos `ok`, 0 falhas.
 
 **Commit**: `:sparkles: catalogo: núcleo de filtros e ordenação com testes`
 
@@ -161,9 +161,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 - [ ] `urgencyLabel`: 1 → "Última unidade", 2 → "Últimas 2 unidades", outros → `null`
 - [ ] `formatPrice(3199)` → `"R$ 3.199,00"` (comparar ignorando o espaço inseparável)
 - [ ] `relatedProducts` nunca inclui o produto atual nem estoque 0, prioriza mesmo `tipo` → mesmo `grupo`, respeita `limit` e retorna `[]` com catálogo de 1 item
-- [ ] Tests pass: `node --test tests/`
+- [ ] Tests pass: `node --test`
 
-**Verify**: `node --test tests/`
+**Verify**: `node --test`
 
 **Commit**: `:sparkles: catalogo: helpers de preço, urgência e relacionados`
 
@@ -181,9 +181,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 - [ ] Ida e volta (`stateFromQuery(stateToQuery(s))`) preserva o estado, inclusive linhas com espaço e acento
 - [ ] Estado padrão gera string vazia
 - [ ] Valores inválidos na URL (`grupo=xyz`, `min=abc`) caem no padrão sem lançar erro
-- [ ] Tests pass: `node --test tests/`
+- [ ] Tests pass: `node --test`
 
-**Verify**: `node --test tests/`
+**Verify**: `node --test`
 
 **Commit**: `:sparkles: catalogo: serialização do estado do catálogo na URL`
 
@@ -200,9 +200,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 - [ ] Passa com o JSON de exemplo
 - [ ] Falha com mensagem citando o slug quando um campo obrigatório é removido ou uma imagem não existe (testar manualmente e reverter)
-- [ ] Tests pass: `node --test tests/`
+- [ ] Tests pass: `node --test`
 
-**Verify**: `node --test tests/`
+**Verify**: `node --test`
 
 **Commit**: `:white_check_mark: catalogo: valida catalogo.json e imagens`
 
@@ -542,7 +542,7 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 ### T25: Documentação de manutenção
 
-**What**: README com: como adicionar/editar/remover um produto (campos do JSON, onde pôr as fotos, tamanho recomendado ~1000px/150KB), rodar localmente (`python3 -m http.server`), rodar os testes (`node --test tests/`), link da bio. Atualizar `.specs/codebase/STRUCTURE.md`, `ARCHITECTURE.md`, `CONVENTIONS.md` e `CONCERNS.md` (bug do menu resolvido; catálogo não é mais hardcoded).
+**What**: README com: como adicionar/editar/remover um produto (campos do JSON, onde pôr as fotos, tamanho recomendado ~1000px/150KB), rodar localmente (`python3 -m http.server`), rodar os testes (`node --test`), link da bio. Atualizar `.specs/codebase/STRUCTURE.md`, `ARCHITECTURE.md`, `CONVENTIONS.md` e `CONCERNS.md` (bug do menu resolvido; catálogo não é mais hardcoded).
 **Where**: `README.md`, `.specs/codebase/*.md` (modificar)
 **Depends on**: T1–T24
 **Requirement**: CAT-01 (goal "só editar o JSON")
@@ -567,7 +567,7 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 **Done when**:
 
 - [ ] Todos os critérios P1 passam; falhas de P2/P3 viram tasks ou Todos em `STATE.md`
-- [ ] `node --test tests/` passa
+- [ ] `node --test` passa
 - [ ] Console sem erros nas 3 páginas
 
 **Commit**: `:white_check_mark: uat: valida catálogo, ficha, vantagens e bio`
