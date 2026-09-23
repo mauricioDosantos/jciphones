@@ -394,3 +394,23 @@ html:not(.js) .catalog-toolbar { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .filter-panel, .filter-backdrop { transition: none; }
 }
+
+/* ---------- Ficha do produto ---------- */
+.product-page { padding: calc(var(--nav-h) + 20px) 0 0; }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 8px 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.back-link svg { width: 18px; height: 18px; transition: transform 0.25s var(--ease); }
+.back-link:hover svg { transform: translateX(-3px); }
+
+.product-detail-skeleton { display: grid; gap: 24px; }
+.product-detail-skeleton .product-media { border-radius: var(--radius-lg); }
+.product-detail-skeleton .sk-line { margin-bottom: 14px; }
+@media (min-width: 900px) { .product-detail-skeleton { grid-template-columns: 1.1fr 1fr; gap: 56px; } }
