@@ -5,6 +5,9 @@
   var grid = document.getElementById("catalogGrid");
   if (!grid) return;
   var countEl = document.getElementById("catalogCount");
+  var tabs = document.querySelectorAll(".catalog-tabs [role=tab]");
+  var searchInput = document.getElementById("catalogSearch");
+  var sortSelect = document.getElementById("catalogSort");
 
   var products = [];
   var state = JCCore.stateFromQuery(location.search);
@@ -30,7 +33,7 @@
     return stateBlock(
       "Nenhum produto encontrado",
       "Tente outro termo ou limpe os filtros. Se não achou o que procura, a gente verifica para você.",
-      '<button type="button" class="btn btn-ghost" data-action="clear-filters">Limpar filtros</button>' +
+      '<button type="button" class="btn btn-ghost" data-action="clear-all">Limpar busca e filtros</button>' +
       waButton("Não achou? Fale com a gente", "Olá! Não encontrei no catálogo o que procuro" + wanted)
     );
   }
@@ -61,6 +64,64 @@
     JC.bindWaLinks(grid);
   }
 
+  function syncControls() {
+    tabs.forEach(function (tab) {
+      var active = tab.getAttribute("data-grupo") === state.grupo;
+      tab.setAttribute("aria-selected", active ? "true" : "false");
+      tab.tabIndex = active ? 0 : -1;
+      if (active) grid.setAttribute("aria-labelledby", tab.id);
+    });
+    if (searchInput.value !== state.q) searchInput.value = state.q;
+    sortSelect.value = state.ordem;
+  }
+
+  function setState(patch) {
+    for (var k in patch) state[k] = patch[k];
+    if (patch.grupo) {
+      // Linhas que não existem no novo grupo deixam de valer.
+      var available = JCCore.linesFor(products, state.grupo);
+      state.linhas = state.linhas.filter(function (l) { return available.indexOf(l) !== -1; });
+    }
+    history.replaceState(null, "", location.pathname + JCCore.stateToQuery(state) + "#catalogo");
+    syncControls();
+    if (products.length) render();
+  }
+
+  function selectTab(tab) {
+    tab.focus();
+    var grupo = tab.getAttribute("data-grupo");
+    if (grupo === state.grupo) return;
+    setState({ grupo: grupo });
+    JC.track("catalog_group", { grupo: grupo });
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { selectTab(tab); });
+    tab.addEventListener("keydown", function (e) {
+      var dir = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (!dir) return;
+      e.preventDefault();
+      selectTab(tabs[(i + dir + tabs.length) % tabs.length]);
+    });
+  });
+
+  searchInput.addEventListener("input", function () {
+    setState({ q: searchInput.value });
+  });
+
+  sortSelect.addEventListener("change", function () {
+    setState({ ordem: sortSelect.value });
+    JC.track("catalog_sort", { ordem: sortSelect.value });
+  });
+
+  grid.addEventListener("click", function (e) {
+    if (e.target.closest("[data-action=clear-all]")) {
+      setState({ q: "", linhas: [], condicoes: [], min: null, max: null });
+      searchInput.focus();
+    }
+  });
+
+  syncControls();
   grid.innerHTML = skeletons(4);
   JC.loadCatalog(CATALOG_URL)
     .then(function (catalog) {
