@@ -90,7 +90,8 @@ _Nenhuma lição registrada ainda — projeto em fase de planejamento._
 - [ ] Confirmar com o cliente o número real de WhatsApp antes de qualquer publicação (bloqueia B-001)
 - [ ] Confirmar com o cliente as fotos reais dos produtos e preços/parcelamentos para popular o catálogo
 - [ ] Rever a estimativa de 7h dev + 2h publicação com o cliente após a AD-004
-- [ ] Obter a URL do Instagram da loja (necessária para a página `/bio/`)
+- [ ] Obter a URL do Instagram da loja (necessária para a página `/bio/`; hoje `href="#"` com TODO em `bio/index.html` e no rodapé)
+- [ ] Confirmar o domínio final: as meta tags OG de `bio/index.html` usam `https://mauriciodosantos.github.io/jciphones/` (padrão do GitHub Pages para o remote atual)
 
 ---
 
