@@ -19,7 +19,7 @@
   function normalize(str) {
     return String(str == null ? "" : str)
       .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
+      .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase()
       .trim();
   }
@@ -197,6 +197,7 @@
     DEFAULT_STATE: DEFAULT_STATE,
     normalize: normalize,
     isAvailable: isAvailable,
+    toPrice: toPrice,
     normalizePriceRange: normalizePriceRange,
     filterProducts: filterProducts,
     sortProducts: sortProducts,
