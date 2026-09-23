@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 <head>
+  <script>document.documentElement.classList.add("js");</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JC Iphones — iPhones novos e seminovos, acessórios e assistência técnica</title>
@@ -26,6 +27,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/site.css">
+  <link rel="stylesheet" href="static/css/catalogo.css">
 </head>
 <body>
 
@@ -39,7 +41,7 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#inicio">Início</a></li>
-          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
           <li><a href="#assistencia">Assistência</a></li>
           <li><a href="#ofertas">Ofertas</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -61,7 +63,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#inicio">Início</a></li>
-      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
       <li><a href="#assistencia">Assistência</a></li>
       <li><a href="#ofertas">Ofertas</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -81,7 +83,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.14L2 22l5.02-1.6A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-2.98.95.95-2.9-.2-.3a8.2 8.2 0 1 1 6.7 3.58z"/><path d="M16.5 14.2c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.63.15-.18.3-.72.95-.88 1.14-.16.2-.32.22-.6.07-.3-.15-1.24-.46-2.36-1.45-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.45.13-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.63-1.52-.87-2.08-.23-.54-.46-.46-.63-.47h-.54c-.19 0-.5.07-.75.36-.26.3-.99.97-.99 2.36 0 1.39 1.01 2.73 1.15 2.92.14.2 1.98 3.03 4.8 4.25.67.29 1.2.46 1.6.59.68.22 1.3.19 1.78.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.37-.07-.12-.26-.2-.55-.34z"/></svg>
             Falar no WhatsApp
           </a>
-          <a class="btn btn-ghost" href="#produtos">Ver produtos</a>
+          <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
         </div>
         <div class="hero-trust reveal" style="--d:.32s">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Garantia de verdade</span>
@@ -91,113 +93,87 @@
       </div>
     </section>
 
-    <!-- PRODUTOS -->
-    <section id="produtos">
+    <!-- CATÁLOGO -->
+    <section class="catalog" id="catalogo">
       <div class="container">
         <div class="section-head">
-          <h2 class="reveal">O que você encontra aqui</h2>
-          <p class="reveal" style="--d:.08s">Do iPhone novo ao seminovo, com acessórios e suporte completo para o seu ecossistema Apple.</p>
+          <h2 class="reveal">Catálogo</h2>
+          <p class="reveal" style="--d:.08s">Aparelhos e acessórios com preço, condição e disponibilidade de cada unidade.</p>
         </div>
 
-        <div class="product-grid">
-          <!-- iPhone -->
-          <a class="card card-dark full reveal" href="#" data-wa-text="Olá! Quero saber mais sobre os iPhones novos e seminovos da JC Iphones.">
-            <div class="card-copy">
-              <span class="card-eyebrow">Novo &amp; Seminovo</span>
-              <h3>iPhone</h3>
-              <p>O iPhone certo para você, com garantia, nota fiscal e parcelamento facilitado.</p>
-              <span class="card-link">Comprar iPhone <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-            <div class="card-visual">
-              <svg viewBox="0 0 120 240" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
-                <rect x="12" y="4" width="96" height="232" rx="20"/>
-                <path d="M44 12h32"/>
-                <circle cx="60" cy="220" r="3" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-          </a>
+        <div class="catalog-tabs" role="tablist" aria-label="Tipo de produto">
+          <button type="button" role="tab" id="tabDispositivo" data-grupo="dispositivo" aria-selected="true" aria-controls="catalogGrid">Dispositivos</button>
+          <button type="button" role="tab" id="tabAcessorio" data-grupo="acessorio" aria-selected="false" aria-controls="catalogGrid" tabindex="-1">Acessórios</button>
+        </div>
 
-          <!-- iPad -->
-          <a class="card card-light full reveal" href="#" data-wa-text="Olá! Quero saber mais sobre os iPads da JC Iphones.">
-            <div class="card-copy">
-              <span class="card-eyebrow">Todos os modelos</span>
-              <h3>iPad</h3>
-              <p>Produtividade e diversão em todos os tamanhos, do iPad ao iPad Pro.</p>
-              <span class="card-link">Comprar iPad <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-            <div class="card-visual">
-              <svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
-                <rect x="8" y="6" width="184" height="132" rx="12"/>
-                <circle cx="100" cy="138" r="2.4" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-          </a>
+        <div class="catalog-toolbar">
+          <label class="catalog-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span class="sr-only">Buscar por nome</span>
+            <input type="search" id="catalogSearch" placeholder="Buscar por nome…" autocomplete="off" enterkeyhint="search">
+          </label>
+          <label class="catalog-sort">
+            <span class="sr-only">Ordenar por</span>
+            <select id="catalogSort">
+              <option value="recente">Mais recente</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="maior-preco">Maior preço</option>
+            </select>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </label>
+          <button type="button" class="catalog-filter-btn" id="filterOpen" aria-controls="filterDrawer" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            Filtros<span class="filter-count" id="filterCount" hidden></span>
+          </button>
+        </div>
 
-          <!-- AirPods -->
-          <a class="card card-light reveal" href="#" data-wa-text="Olá! Quero saber mais sobre os AirPods da JC Iphones.">
-            <div class="card-copy">
-              <span class="card-eyebrow">Áudio</span>
-              <h3>AirPods</h3>
-              <p>Som imersivo e sem fios para o seu dia a dia.</p>
-              <span class="card-link">Comprar AirPods <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-            <div class="card-visual">
-              <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M34 46h52a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H34a12 12 0 0 1-12-12V58a12 12 0 0 1 12-12z"/>
-                <path d="M44 46V36a16 16 0 0 1 32 0v10"/>
-                <circle cx="60" cy="78" r="6" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-          </a>
+        <p class="catalog-count" id="catalogCount" aria-live="polite"></p>
 
-          <!-- Apple Watch -->
-          <a class="card card-dark reveal" href="#" data-wa-text="Olá! Quero saber mais sobre os Apple Watch da JC Iphones.">
-            <div class="card-copy">
-              <span class="card-eyebrow">Vestíveis</span>
-              <h3>Apple Watch</h3>
-              <p>Sua saúde e seu estilo, direto no pulso.</p>
-              <span class="card-link">Comprar Apple Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+        <div class="catalog-grid" id="catalogGrid" role="tabpanel" aria-labelledby="tabDispositivo">
+          <noscript>
+            <!-- Sem JavaScript não há catálogo: link direto (atualizar o número junto com WA_NUMBER em static/js/common.js) -->
+            <div class="catalog-state">
+              <h3>Ative o JavaScript para ver o catálogo</h3>
+              <p>Ou fale direto com a gente e pergunte pelo aparelho que você procura.</p>
+              <div class="state-actions"><a class="btn btn-whatsapp" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20saber%20quais%20produtos%20voc%C3%AAs%20t%C3%AAm%20dispon%C3%ADveis." target="_blank" rel="noopener">Falar no WhatsApp</a></div>
             </div>
-            <div class="card-visual">
-              <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="24" y="56" width="72" height="72" rx="24"/>
-                <path d="M34 56V34h52v22"/>
-                <path d="M34 128v22h52v-22"/>
-                <circle cx="60" cy="92" r="4" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-          </a>
+          </noscript>
+        </div>
+      </div>
 
-          <!-- Acessórios -->
-          <a class="card card-light reveal" href="#" data-wa-text="Olá! Quero saber mais sobre capas e acessórios da JC Iphones.">
-            <div class="card-copy">
-              <span class="card-eyebrow">Proteção</span>
-              <h3>Acessórios</h3>
-              <p>Capas, películas, carregadores e cabos para proteger e turbinar seu aparelho.</p>
-              <span class="card-link">Ver acessórios <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-            <div class="card-visual">
-              <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
-                <rect x="18" y="12" width="84" height="96" rx="16"/>
-                <rect x="38" y="34" width="44" height="52" rx="8"/>
-              </svg>
-            </div>
-          </a>
-
-          <!-- Assistência -->
-          <a class="card card-dark reveal" href="#" data-wa-text="Olá! Preciso de assistência técnica para meu iPhone.">
-            <div class="card-copy">
-              <span class="card-eyebrow">Suporte especializado</span>
-              <h3>Assistência Técnica</h3>
-              <p>Troca de tela, bateria e reparos especializados para iPhone.</p>
-              <span class="card-link">Agendar reparo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-            <div class="card-visual">
-              <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M69.5 18.5a20 20 0 0 0-22.6 27.5L15 78a7.5 7.5 0 0 0 10.6 10.6L57.5 56.6a20 20 0 0 0 27.5-22.6l-12.3 12.3-10.6-10.6 12.3-12.3Z"/>
-              </svg>
-            </div>
-          </a>
+      <div class="filter-drawer" id="filterDrawer" role="dialog" aria-modal="true" aria-labelledby="filterTitle" hidden>
+        <div class="filter-backdrop" data-close></div>
+        <div class="filter-panel">
+          <header class="filter-head">
+            <h3 id="filterTitle">Filtros</h3>
+            <button type="button" class="filter-close" data-close aria-label="Fechar filtros">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </header>
+          <div class="filter-body">
+            <fieldset class="filter-group">
+              <legend>Preço</legend>
+              <div class="filter-price">
+                <label><span>Mínimo</span><input type="number" id="filterMin" inputmode="numeric" min="0" step="50" placeholder="R$ 0"></label>
+                <label><span>Máximo</span><input type="number" id="filterMax" inputmode="numeric" min="0" step="50" placeholder="Sem limite"></label>
+              </div>
+            </fieldset>
+            <fieldset class="filter-group" id="filterLinhasGroup">
+              <legend>Linha do aparelho</legend>
+              <div class="filter-options" id="filterLinhas"></div>
+            </fieldset>
+            <fieldset class="filter-group">
+              <legend>Condição</legend>
+              <div class="filter-options">
+                <label class="chip"><input type="checkbox" name="cond" value="novo"><span>Novo</span></label>
+                <label class="chip"><input type="checkbox" name="cond" value="seminovo"><span>Seminovo</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <footer class="filter-foot">
+            <button type="button" class="btn btn-ghost" id="filterClear">Limpar filtros</button>
+            <button type="button" class="btn btn-primary" id="filterApply" data-close>Ver resultados</button>
+          </footer>
         </div>
       </div>
     </section>
@@ -372,6 +348,8 @@
     </div>
   </footer>
 
+  <script src="static/js/catalogo-core.js"></script>
   <script src="static/js/common.js"></script>
+  <script src="static/js/catalogo.js"></script>
 </body>
 </html>

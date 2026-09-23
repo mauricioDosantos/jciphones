@@ -30,6 +30,16 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -236,87 +246,6 @@ section { padding: 88px 0; }
   margin-bottom: 16px;
 }
 .section-head p { font-size: 1.1rem; color: var(--text-secondary); }
-
-/* ---------- Cards de produto ---------- */
-.product-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-.product-grid .full { grid-column: 1 / -1; }
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: var(--radius-lg);
-  padding: 44px 44px 40px;
-  overflow: hidden;
-  text-align: center;
-  min-height: 460px;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-.card:hover { transform: translateY(-4px); }
-.card-light { background: var(--bg-secondary); }
-.card-dark { background: var(--bg-dark); }
-.card-light:hover { box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.25); }
-.card-dark:hover { box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6); }
-
-.card-copy { position: relative; z-index: 2; }
-.card-eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.card-light .card-eyebrow { color: var(--accent); }
-.card-dark .card-eyebrow { color: var(--accent); }
-.card h3 {
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 12px;
-}
-.card p {
-  font-size: 1.05rem;
-  max-width: 340px;
-  margin: 0 auto;
-}
-.card-light h3 { color: var(--text-primary); }
-.card-light p { color: var(--text-secondary); }
-.card-dark h3 { color: var(--text-on-dark); }
-.card-dark p { color: var(--text-on-dark-2); }
-
-.card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 20px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--accent);
-}
-.card-link svg { width: 16px; height: 16px; transition: transform 0.25s var(--ease); }
-.card:hover .card-link svg { transform: translateX(4px); }
-
-.card-visual {
-  position: relative;
-  z-index: 1;
-  height: 210px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 24px;
-}
-.card-visual svg {
-  height: 100%;
-  max-width: 100%;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.18));
-}
-.card-light .card-visual svg { color: var(--text-primary); }
-.card-dark .card-visual svg { color: var(--text-on-dark); }
 
 /* ---------- Assistência ---------- */
 .assist {
@@ -526,14 +455,14 @@ footer {
 }
 .footer-bottom a { color: var(--text-on-dark); }
 
-/* ---------- Reveal ---------- */
-.reveal {
+/* ---------- Reveal (só esconde quando há JS para revelar) ---------- */
+.js .reveal {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
   transition-delay: var(--d, 0s);
 }
-.reveal.in { opacity: 1; transform: none; }
+.js .reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 900px) {
@@ -541,7 +470,6 @@ footer {
   .nav-toggle { display: flex; }
   .nav-cta.desktop { display: none; }
   section { padding: 64px 0; }
-  .product-grid { grid-template-columns: 1fr; }
   .assist-grid { grid-template-columns: 1fr; }
   .diffs-grid { grid-template-columns: 1fr 1fr; }
   .promo-card { grid-template-columns: 1fr; }
@@ -553,13 +481,12 @@ footer {
 }
 @media (max-width: 520px) {
   .diffs-grid { grid-template-columns: 1fr; }
-  .card { padding: 32px 24px 28px; min-height: 400px; }
   .hero-cta .btn { flex: 1 1 100%; }
   .hero-cta { gap: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .card, .assist-item, .insta-card img { transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .assist-item, .insta-card img { transition: none; }
 }
