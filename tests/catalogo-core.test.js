@@ -114,3 +114,32 @@ test("relatedProducts: mesmo tipo, depois mesmo grupo, depois o resto", () => {
 test("relatedProducts: catálogo de 1 item retorna vazio", () => {
   assert.deepEqual(core.relatedProducts([P[0]], P[0]), []);
 });
+
+test("stateToQuery: estado padrão gera string vazia", () => {
+  assert.equal(core.stateToQuery({}), "");
+  assert.equal(core.stateToQuery(core.DEFAULT_STATE), "");
+});
+
+test("stateToQuery ⇄ stateFromQuery preserva o estado", () => {
+  const s = {
+    grupo: "acessorio",
+    q: "capa, iphone & cia",
+    ordem: "menor-preco",
+    linhas: ["iPhone 13", "Apple Watch Série Ã"],
+    condicoes: ["novo", "seminovo"],
+    min: 100,
+    max: 3500
+  };
+  const qs = core.stateToQuery(s);
+  assert.match(qs, /linha=iPhone%2013,Apple%20Watch/);
+  assert.deepEqual(core.stateFromQuery(qs), s);
+  assert.deepEqual(core.stateFromQuery(core.stateToQuery({ ordem: "maior-preco" })), { ...core.DEFAULT_STATE, ordem: "maior-preco" });
+});
+
+test("stateFromQuery: valores inválidos caem no padrão", () => {
+  assert.deepEqual(
+    core.stateFromQuery("?grupo=xyz&ordem=abc&min=abc&max=-1&cond=usado,novo"),
+    { ...core.DEFAULT_STATE, condicoes: ["novo"] }
+  );
+  assert.deepEqual(core.stateFromQuery(""), core.DEFAULT_STATE);
+});

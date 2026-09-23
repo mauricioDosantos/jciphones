@@ -128,6 +128,44 @@
       .slice(0, limit == null ? 4 : limit);
   }
 
+  function splitList(value, allowed) {
+    return (value || "").split(",").filter(function (v) {
+      return v && (!allowed || allowed.indexOf(v) !== -1);
+    });
+  }
+
+  function stateFromQuery(search) {
+    var params = new URLSearchParams(search || "");
+    var grupo = params.get("grupo");
+    var ordem = params.get("ordem");
+    return {
+      grupo: GRUPOS.indexOf(grupo) !== -1 ? grupo : DEFAULT_STATE.grupo,
+      q: params.get("q") || "",
+      ordem: ORDENS.indexOf(ordem) !== -1 ? ordem : DEFAULT_STATE.ordem,
+      linhas: splitList(params.get("linha")),
+      condicoes: splitList(params.get("cond"), CONDICOES),
+      min: toPrice(params.get("min")),
+      max: toPrice(params.get("max"))
+    };
+  }
+
+  // Vírgula fica literal para a URL continuar legível: ?linha=iPhone%2013,iPhone%2015
+  function stateToQuery(state) {
+    var s = withDefaults(state);
+    var parts = [];
+    function add(key, value) {
+      parts.push(key + "=" + [].concat(value).map(encodeURIComponent).join(","));
+    }
+    if (s.grupo !== DEFAULT_STATE.grupo) add("grupo", s.grupo);
+    if (s.q.trim()) add("q", s.q.trim());
+    if (s.ordem !== DEFAULT_STATE.ordem) add("ordem", s.ordem);
+    if (s.linhas.length) add("linha", s.linhas);
+    if (s.condicoes.length) add("cond", s.condicoes);
+    if (toPrice(s.min) !== null) add("min", toPrice(s.min));
+    if (toPrice(s.max) !== null) add("max", toPrice(s.max));
+    return parts.length ? "?" + parts.join("&") : "";
+  }
+
   var api = {
     GRUPOS: GRUPOS,
     CONDICOES: CONDICOES,
@@ -142,7 +180,9 @@
     discountPercent: discountPercent,
     urgencyLabel: urgencyLabel,
     formatPrice: formatPrice,
-    relatedProducts: relatedProducts
+    relatedProducts: relatedProducts,
+    stateFromQuery: stateFromQuery,
+    stateToQuery: stateToQuery
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
