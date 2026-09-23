@@ -124,7 +124,13 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
 
+  var filtersAtOpen = "";
+  function filtersKey() {
+    return JSON.stringify([state.linhas, state.condicoes, state.min, state.max]);
+  }
+
   function openFilters() {
+    filtersAtOpen = filtersKey();
     drawer.hidden = false;
     document.body.style.overflow = "hidden";
     openBtn.setAttribute("aria-expanded", "true");
@@ -135,6 +141,15 @@
 
   function closeFilters() {
     if (drawer.hidden) return;
+    if (filtersKey() !== filtersAtOpen) {
+      JC.track("catalog_filter", {
+        linhas: state.linhas.join(","),
+        condicoes: state.condicoes.join(","),
+        min: state.min,
+        max: state.max,
+        results: currentList().length
+      });
+    }
     drawer.classList.remove("open");
     document.body.style.overflow = "";
     openBtn.setAttribute("aria-expanded", "false");
@@ -194,8 +209,14 @@
     });
   });
 
+  var searchTimer;
   searchInput.addEventListener("input", function () {
     setState({ q: searchInput.value });
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () {
+      var term = state.q.trim();
+      if (term.length >= 2) JC.track("catalog_search", { search_term: term, results: currentList().length });
+    }, 1000);
   });
 
   sortSelect.addEventListener("change", function () {
