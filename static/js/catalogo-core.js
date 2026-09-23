@@ -95,6 +95,39 @@
     return Object.keys(seen).sort(collator.compare);
   }
 
+  function discountPercent(p) {
+    if (!(p.precoOriginal > p.preco)) return null;
+    return Math.round(((p.precoOriginal - p.preco) / p.precoOriginal) * 100);
+  }
+
+  function urgencyLabel(p) {
+    if (p.estoque === 1) return "Última unidade";
+    if (p.estoque === 2) return "Últimas 2 unidades";
+    return null;
+  }
+
+  var priceFormat = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+  function formatPrice(n) {
+    return priceFormat.format(n);
+  }
+
+  function relatedProducts(products, current, limit) {
+    function rank(p) {
+      if (p.tipo === current.tipo) return 0;
+      if (p.grupo === current.grupo) return 1;
+      return 2;
+    }
+    return products
+      .filter(function (p) { return p.slug !== current.slug && isAvailable(p); })
+      .sort(function (a, b) {
+        return rank(a) - rank(b) ||
+          Math.abs(a.preco - current.preco) - Math.abs(b.preco - current.preco) ||
+          byName(a, b);
+      })
+      .slice(0, limit == null ? 4 : limit);
+  }
+
   var api = {
     GRUPOS: GRUPOS,
     CONDICOES: CONDICOES,
@@ -105,7 +138,11 @@
     normalizePriceRange: normalizePriceRange,
     filterProducts: filterProducts,
     sortProducts: sortProducts,
-    linesFor: linesFor
+    linesFor: linesFor,
+    discountPercent: discountPercent,
+    urgencyLabel: urgencyLabel,
+    formatPrice: formatPrice,
+    relatedProducts: relatedProducts
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;

@@ -78,3 +78,39 @@ test("linesFor: por grupo, só disponíveis, ordem numérica", () => {
   assert.deepEqual(core.linesFor(P, "dispositivo"), ["iPhone 9", "iPhone 13", "iPhone 16"]);
   assert.deepEqual(core.linesFor(P, "acessorio"), ["Apple Watch"]);
 });
+
+test("discountPercent", () => {
+  assert.equal(core.discountPercent({ preco: 7699, precoOriginal: 8999 }), 14);
+  assert.equal(core.discountPercent({ preco: 100 }), null);
+  assert.equal(core.discountPercent({ preco: 100, precoOriginal: 100 }), null);
+  assert.equal(core.discountPercent({ preco: 100, precoOriginal: 90 }), null);
+});
+
+test("urgencyLabel", () => {
+  assert.equal(core.urgencyLabel({ estoque: 1 }), "Última unidade");
+  assert.equal(core.urgencyLabel({ estoque: 2 }), "Últimas 2 unidades");
+  assert.equal(core.urgencyLabel({ estoque: 3 }), null);
+  assert.equal(core.urgencyLabel({}), null);
+});
+
+test("formatPrice em BRL", () => {
+  assert.equal(core.formatPrice(3199).replace(/\s/g, " "), "R$ 3.199,00");
+  assert.equal(core.formatPrice(89.9).replace(/\s/g, " "), "R$ 89,90");
+});
+
+test("relatedProducts: mesmo tipo, depois mesmo grupo, depois o resto", () => {
+  const current = P.find((p) => p.slug === "i13");
+  const r = core.relatedProducts(P, current, 4);
+  assert.equal(r.length, 4);
+  assert.ok(!slugs(r).includes("i13"));
+  assert.ok(!slugs(r).includes("i11"), "estoque 0 não entra");
+  // iPhones disponíveis por proximidade de preço: i13p (800), i9 (1800), i16 (3200); depois jbl (mesmo grupo)
+  assert.deepEqual(slugs(r), ["i13p", "i9", "i16", "jbl"]);
+  const watch = P.find((p) => p.slug === "watch");
+  // depois do mesmo grupo (capa), o mais próximo em preço de 1999 é i13 (2799), não i9 (999)
+  assert.deepEqual(slugs(core.relatedProducts(P, watch, 2)), ["capa", "i13"]);
+});
+
+test("relatedProducts: catálogo de 1 item retorna vazio", () => {
+  assert.deepEqual(core.relatedProducts([P[0]], P[0]), []);
+});
