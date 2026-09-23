@@ -48,12 +48,103 @@
     });
   }
 
+  var HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+
+  function escapeHtml(str) {
+    return String(str == null ? "" : str).replace(/[&<>"']/g, function (c) { return HTML_ESCAPES[c]; });
+  }
+
+  var CONDICAO_LABEL = { novo: "Novo", seminovo: "Seminovo" };
+
+  var catalogCache = {};
+
+  // Carrega o JSON do catálogo; produtos com erro são descartados com aviso no console.
+  function loadCatalog(url) {
+    if (!catalogCache[url]) {
+      catalogCache[url] = fetch(url, { cache: "no-cache" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status + " ao carregar " + url);
+          return res.json();
+        })
+        .then(function (json) {
+          if (!json || !Array.isArray(json.produtos)) throw new Error('catálogo sem a lista "produtos"');
+          json.produtos = json.produtos.filter(function (p, i) {
+            var errors = JCCore.validateProduct(p);
+            if (errors.length) console.warn("[catálogo] produto ignorado (" + ((p && p.slug) || "#" + (i + 1)) + "): " + errors.join("; "));
+            return !errors.length;
+          });
+          return json;
+        });
+      catalogCache[url].catch(function () { delete catalogCache[url]; });
+    }
+    return catalogCache[url];
+  }
+
+  function productMessage(p) {
+    return "Olá! Tenho interesse no " + p.nome + " (" + CONDICAO_LABEL[p.condicao] + ") por " +
+      JCCore.formatPrice(p.preco) + ". Ainda está disponível?";
+  }
+
+  function renderTags(p) {
+    var html = '<span class="tag tag-' + p.condicao + '">' + CONDICAO_LABEL[p.condicao] + "</span>";
+    (p.tags || []).forEach(function (t) {
+      html += '<span class="tag tag-extra">' + escapeHtml(t) + "</span>";
+    });
+    var urgency = JCCore.urgencyLabel(p);
+    if (urgency) html += '<span class="tag tag-urgencia">' + urgency + "</span>";
+    return html;
+  }
+
+  function renderPrice(p) {
+    var discount = JCCore.discountPercent(p);
+    var html = '<div class="price">';
+    if (discount) {
+      html += '<div class="price-old"><s>' + JCCore.formatPrice(p.precoOriginal) + '</s> <span class="tag tag-promo">-' + discount + "%</span></div>";
+    }
+    html += '<strong class="price-now">' + JCCore.formatPrice(p.preco) + "</strong>";
+    if (p.parcelamento) html += '<small class="price-installments">ou ' + escapeHtml(p.parcelamento) + "</small>";
+    return html + "</div>";
+  }
+
+  function renderCard(p, listName) {
+    return '<a class="product-card reveal" href="produto.html?p=' + encodeURIComponent(p.slug) + '"' +
+      ' data-slug="' + escapeHtml(p.slug) + '" data-name="' + escapeHtml(p.nome) + '"' +
+      ' data-price="' + p.preco + '" data-list="' + escapeHtml(listName || "catalogo") + '">' +
+        '<div class="product-media">' +
+          '<img src="' + escapeHtml(p.imagens[0]) + '" alt="' + escapeHtml(p.nome) + '" loading="lazy" width="600" height="600"' +
+          ' onerror="this.onerror=null;this.parentNode.classList.add(\'is-broken\')">' +
+          '<div class="product-tags">' + renderTags(p) + "</div>" +
+        "</div>" +
+        '<div class="product-body">' +
+          '<h3 class="product-name">' + escapeHtml(p.nome) + "</h3>" +
+          renderPrice(p) +
+          '<span class="btn btn-primary btn-sm product-more">Saiba mais</span>' +
+        "</div>" +
+      "</a>";
+  }
+
+  document.addEventListener("click", function (e) {
+    var card = e.target.closest && e.target.closest(".product-card");
+    if (!card) return;
+    track("select_item", {
+      item_list_name: card.getAttribute("data-list"),
+      items: [{ item_id: card.getAttribute("data-slug"), item_name: card.getAttribute("data-name"), price: Number(card.getAttribute("data-price")) }]
+    });
+  });
+
   window.JC = {
     WA_NUMBER: WA_NUMBER,
+    CONDICAO_LABEL: CONDICAO_LABEL,
     waUrl: waUrl,
     track: track,
     bindWaLinks: bindWaLinks,
-    observeReveal: observeReveal
+    observeReveal: observeReveal,
+    escapeHtml: escapeHtml,
+    loadCatalog: loadCatalog,
+    productMessage: productMessage,
+    renderTags: renderTags,
+    renderPrice: renderPrice,
+    renderCard: renderCard
   };
 
   bindWaLinks();
