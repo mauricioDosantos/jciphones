@@ -33,10 +33,7 @@
   function renderProduct(p) {
     root.innerHTML =
       '<div class="pd">' +
-        '<div class="pd-gallery" id="pdGallery">' +
-          '<div class="pd-main product-media"><img src="' + JC.escapeHtml(p.imagens[0]) + '" alt="' + JC.escapeHtml(p.nome) + '" width="600" height="600"' +
-          ' onerror="this.onerror=null;this.parentNode.classList.add(\'is-broken\')"></div>' +
-        "</div>" +
+        renderGallery(p) +
         '<div class="pd-info">' +
           '<div class="pd-tags">' + JC.renderTags(p) + "</div>" +
           '<h1 class="pd-name">' + JC.escapeHtml(p.nome) + "</h1>" +
@@ -49,6 +46,64 @@
         "</div>" +
       "</div>";
     JC.bindWaLinks(root);
+    bindGallery();
+  }
+
+  function renderGallery(p) {
+    var many = p.imagens.length > 1;
+    var slides = p.imagens.map(function (src, i) {
+      return '<div class="pd-slide product-media"><img src="' + JC.escapeHtml(src) + '"' +
+        ' alt="' + JC.escapeHtml(p.nome) + (many ? " — foto " + (i + 1) + " de " + p.imagens.length : "") + '"' +
+        ' width="600" height="600"' + (i ? ' loading="lazy"' : "") +
+        ' onerror="this.onerror=null;this.parentNode.classList.add(\'is-broken\')"></div>';
+    }).join("");
+    if (!many) return '<div class="pd-gallery"><div class="pd-track">' + slides + "</div></div>";
+
+    var dots = p.imagens.map(function (_, i) {
+      return '<span class="pd-dot' + (i ? "" : " is-active") + '"></span>';
+    }).join("");
+    var thumbs = p.imagens.map(function (src, i) {
+      return '<button type="button" class="pd-thumb" data-index="' + i + '" aria-label="Ver foto ' + (i + 1) + " de " + p.imagens.length + '"' +
+        (i ? "" : ' aria-current="true"') + '><img src="' + JC.escapeHtml(src) + '" alt="" loading="lazy" width="120" height="120"></button>';
+    }).join("");
+    return '<div class="pd-gallery">' +
+      '<div class="pd-track" tabindex="0" aria-label="Fotos do produto, deslize para ver mais">' + slides + "</div>" +
+      '<div class="pd-dots" aria-hidden="true">' + dots + "</div>" +
+      '<div class="pd-thumbs">' + thumbs + "</div>" +
+    "</div>";
+  }
+
+  function bindGallery() {
+    var track = root.querySelector(".pd-track");
+    var thumbs = root.querySelectorAll(".pd-thumb");
+    var dots = root.querySelectorAll(".pd-dot");
+    if (!thumbs.length) return;
+
+    function setActive(index) {
+      thumbs.forEach(function (t, i) {
+        if (i === index) t.setAttribute("aria-current", "true");
+        else t.removeAttribute("aria-current");
+      });
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === index); });
+    }
+
+    var ticking = false;
+    track.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        setActive(Math.round(track.scrollLeft / track.clientWidth));
+        ticking = false;
+      });
+    }, { passive: true });
+
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        var index = Number(thumb.getAttribute("data-index"));
+        track.scrollTo({ left: index * track.clientWidth, behavior: "smooth" });
+        setActive(index);
+      });
+    });
   }
 
   function updateMeta(p) {

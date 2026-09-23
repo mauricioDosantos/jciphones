@@ -420,11 +420,52 @@ html:not(.js) .catalog-toolbar { display: none; }
   .pd { grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
   .pd-info { position: sticky; top: calc(var(--nav-h) + 24px); }
 }
-.pd-main { border-radius: var(--radius-lg); }
+.pd-gallery { min-width: 0; }
+.pd-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: var(--radius-lg);
+}
+.pd-track::-webkit-scrollbar { display: none; }
+.pd-track:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.pd-slide { flex: 0 0 100%; scroll-snap-align: start; }
 @media (max-width: 899px) {
   /* Mantém o botão de compra perto da dobra em celulares. */
-  .pd-main { aspect-ratio: auto; height: min(88vw, 40vh); }
+  .pd-slide { aspect-ratio: auto; height: min(88vw, 40vh); }
 }
+
+.pd-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+.pd-dot {
+  width: 6px; height: 6px;
+  border-radius: 3px;
+  background: #d2d2d7;
+  transition: width 0.3s var(--ease), background-color 0.3s ease;
+}
+.pd-dot.is-active { width: 18px; background: var(--text-primary); }
+
+.pd-thumbs { display: none; }
+@media (min-width: 900px) {
+  .pd-dots { display: none; }
+  .pd-thumbs { display: flex; gap: 10px; margin-top: 14px; }
+}
+.pd-thumb {
+  width: 76px; height: 76px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.7;
+}
+.pd-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.pd-thumb:hover { opacity: 1; }
+.pd-thumb[aria-current="true"] { border-color: var(--text-primary); opacity: 1; }
+.pd-thumb:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 .pd-info { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .pd-tags { display: flex; flex-wrap: wrap; gap: 6px; }
