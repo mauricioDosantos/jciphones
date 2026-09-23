@@ -202,6 +202,13 @@
 
   bindWaLinks();
 
+  // Página link-na-bio: qual botão foi usado
+  document.querySelectorAll("[data-bio]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      track("bio_click", { destino: link.getAttribute("data-bio") });
+    });
+  });
+
   // Cliques em navegação (menu desktop e mobile)
   document.querySelectorAll("nav a[href*='#'], #mobileMenu a[href*='#']").forEach(function (link) {
     link.addEventListener("click", function () {
