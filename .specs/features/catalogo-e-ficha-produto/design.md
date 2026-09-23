@@ -1,7 +1,7 @@
 # Catálogo e Ficha de Produto Design
 
 **Spec**: `.specs/features/catalogo-e-ficha-produto/spec.md`
-**Status**: Draft
+**Status**: Implemented (2026-09-23)
 **Cobre também**: a base compartilhada usada por `vantagens-jciphones` e `pagina-inicio-bio`, que por serem simples não têm design próprio.
 
 ---
@@ -119,7 +119,7 @@ jciphone/
   - `bindWaLinks(root = document)`: varre `[data-wa-text]` e evita ligar o mesmo link duas vezes (marca com `data-wa-bound`)
   - `observeReveal(root = document)`
   - `loadCatalog(): Promise<Catalog>`: faz `fetch("data/catalogo.json")` (o caminho é passado pela página), valida `Array.isArray(json.produtos)` e guarda o resultado em memória
-  - `productMessage(p): string`: `"Olá! Tenho interesse no {nome} ({Novo|Seminovo}) por {preço}. Ainda está disponível?"`
+  - `productMessage(p): string`: `"Olá! Tenho interesse neste produto: {nome} ({Novo|Seminovo}), {preço}. Ainda está disponível?"` (formato neutro: "interesse **no** Capa" ficava errado)
   - `renderVantagens(el, variant)`: `variant = "full" | "compact"`, a partir da constante `VANTAGENS` (resolve VANT-01/03 com **uma única fonte de texto**)
   - `escapeHtml(str)`: todo texto vindo do JSON passa por aqui antes de ir para `innerHTML`
   - `renderCard(p, listName)`: HTML do card de produto (fica aqui, e não no núcleo, porque gera HTML; é usado pelo catálogo e pelos relacionados)
@@ -304,3 +304,15 @@ Valores padrão não entram na URL. Assim a home "limpa" continua com a URL `/`.
 
 - **Vantagens:** `JC.renderVantagens(el, "full")` em uma nova seção `#vantagens` logo depois de `#catalogo`, e `"compact"` na ficha. A seção `#porque` fica com "Atendimento próximo" e "Loja física" (sem duplicar garantia/pagamento), ou é removida se ficar com só 2 itens. Isso fica para validar visualmente na execução.
 - **Bio:** `bio/index.html` estático, usa `../static/css/site.css` e `../static/js/common.js` (WhatsApp, GA4, `data-wa-text`). Não carrega o catálogo. Os botões usam os ícones SVG no mesmo estilo dos já usados no site.
+
+---
+
+## Desvios feitos na implementação
+
+| Planejado | Implementado | Motivo |
+| --- | --- | --- |
+| Validação do JSON só no teste | `JCCore.validateProduct` usado pelo teste **e** por `loadCatalog` | Mesma regra nos dois lugares; produto inválido é descartado em produção sem derrubar o catálogo |
+| `min > max` trocado no estado | Estado guarda o que foi digitado; a troca acontece em `filterProducts` | Trocar os campos enquanto a pessoa digita fazia um campo sobrescrever o outro |
+| Cache padrão do GitHub Pages | `fetch(..., { cache: "no-cache" })` | Revalida com ETag (barato) e o lojista vê a mudança na hora |
+| Todos os selos no topo da foto do card | Condição/extras no topo, urgência no canto inferior; extras ocultos < 480px | Em 2 colunas no celular os selos cobriam o produto |
+| `.reveal` sempre esconde | Só esconde com `html.js` | Sem JS, títulos ficavam invisíveis (bug preexistente) |

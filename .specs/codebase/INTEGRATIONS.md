@@ -4,7 +4,7 @@
 
 **Service:** Google Analytics 4 (gtag.js)
 **Purpose:** rastrear uso da plataforma (visitas, cliques, navegação, rolagem, tempo de permanência) para relatórios de conversão e engajamento
-**Implementation:** snippet oficial no `<head>` de `index.html` + eventos customizados disparados na IIFE do script final
+**Implementation:** snippet oficial no `<head>` de cada página + `JC.track()` em `static/js/common.js`
 **Configuration:** measurement ID `G-FJ1ECSJ4RF`, hardcoded no snippet
 **Authentication:** nenhuma (client-side, chave pública de medição)
 
@@ -18,6 +18,15 @@
 | `section_view`    | seção de `<main>` entra 40% na viewport (uma vez)    | `section_id`                         |
 | `scroll_depth`    | usuário atinge 25/50/75/100% de rolagem da página    | `percent`                            |
 | `time_on_page`    | ping a cada 30s enquanto a aba está visível          | `seconds` (acumulado)                |
+| `catalog_group`   | troca de aba Dispositivos/Acessórios                 | `grupo`                              |
+| `catalog_search`  | 1s após a última tecla, termo ≥ 2 caracteres         | `search_term`, `results`             |
+| `catalog_sort`    | troca de ordenação                                    | `ordem`                              |
+| `catalog_filter`  | gaveta de filtros fechada com filtros alterados       | `linhas`, `condicoes`, `min`, `max`, `results` |
+| `select_item`     | clique em card (catálogo ou relacionados)             | `item_list_name`, `items[]`          |
+| `view_item`       | ficha do produto renderizada                          | `currency`, `value`, `items[]`       |
+| `bio_click`       | clique em botão da página `/bio/`                      | `destino`                            |
+
+`whatsapp_click` também recebe `item_id` e `link_location` = `ficha`, `ficha_barra` ou `bio` quando aplicável.
 
 `page_view` é automático via `gtag('config', ...)`.
 
@@ -28,7 +37,7 @@
 **Service:** WhatsApp (`wa.me` deep link)
 **Purpose:** canal único de fechamento de venda — todo CTA do site leva a uma conversa pré-preenchida
 **Implementation:** atributo `data-wa-text` em âncoras, resolvido em JS para `https://wa.me/{numero}?text={mensagem}`
-**Configuration:** constante `WA_NUMBER` no script de `index.html` — **atualmente com número placeholder `5511999999999`, precisa ser substituído pelo número real da loja**
+**Configuration:** constante `WA_NUMBER` em `static/js/common.js` (e links em `<noscript>` de `index.html`/`produto.html`) — **atualmente com número placeholder `5511999999999`, precisa ser substituído pelo número real da loja**
 **Authentication:** nenhuma
 
 ## Mapas

@@ -6,15 +6,13 @@
 
 ### Número de WhatsApp é placeholder
 
-**Location:** `index.html` — `var WA_NUMBER = "5511999999999";`
+**Location:** `static/js/common.js` — `var WA_NUMBER = "5511999999999";` (+ links `<noscript>` em `index.html` e `produto.html`)
 **Risk:** Alto — todo CTA do site (a razão de existir da página) aponta para um número de exemplo. Se publicado assim, 100% dos leads se perdem.
 **Fix:** Substituir pelo número real da JC Iphones antes de qualquer publicação. Deve ser a primeira tarefa de qualquer feature que toque o arquivo.
 
-### Horário de atendimento desatualizado
+### Horário de atendimento desatualizado — RESOLVIDO (2026-09-23)
 
-**Location:** `index.html` — hero trust badge exibe "Seg a dom, 7h às 18h"
-**Risk:** Médio — diverge do horário acordado com o cliente (8h às 18h), gera expectativa errada.
-**Fix:** Atualizar texto para refletir 8h às 18h (rastreado em `pagina-inicio-bio/spec.md`).
+Todas as ocorrências agora dizem "8h às 18h".
 
 ## Assets
 
@@ -42,8 +40,22 @@
 
 ## Scaling Limits
 
-### Catálogo hardcoded no HTML
+### Catálogo hardcoded no HTML — RESOLVIDO (2026-09-23)
 
-**Location:** seção `#produtos` de `index.html`
-**Risk:** Baixo hoje (poucos produtos), mas cada produto novo exige editar HTML diretamente — não há fonte de dados única (JSON/CMS).
-**Fix:** Fora do escopo das 7h de desenvolvimento combinadas com o cliente. Registrado como ideia futura em `project/STATE.md` (Deferred Ideas) para quando o catálogo crescer.
+O catálogo agora vem de `data/catalogo.json`. Novo risco: edição manual do JSON (vírgula sobrando, campo errado). Mitigação: `node --test` valida o arquivo e as fotos; em produção, produto inválido é descartado com aviso no console, sem derrubar o catálogo.
+
+### SEO das fichas de produto
+
+**Location:** `produto.html?p=<slug>`
+**Risk:** Médio — a ficha é renderizada no navegador; o Google indexa pior que páginas estáticas por produto (como faz a iPortess).
+**Fix:** se SEO de cauda longa virar prioridade, gerar páginas estáticas por produto com um script de build (ver Deferred Ideas em `STATE.md`).
+
+### Fotos dos produtos são placeholders
+
+**Location:** `static/produtos/**.svg` + `data/catalogo.json` de exemplo
+**Risk:** Alto para publicação — preços, produtos e fotos são fictícios.
+**Fix:** substituir pelo catálogo real antes do deploy (Todo em `STATE.md`).
+
+### Menu mobile: ícone não trocava após o 1º toque — RESOLVIDO (2026-09-23)
+
+Corrigido na extração para `common.js` (troca do `innerHTML` do botão em vez do `outerHTML` do ícone).

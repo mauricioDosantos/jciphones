@@ -1,42 +1,34 @@
 # Code Conventions
 
+**Atualizado:** 2026-09-23 (AD-005: CSS/JS saíram do `index.html`)
+
 ## Naming Conventions
 
-**Files:**
-Minúsculo, um único `index.html` na raiz. Assets em `static/` com nome descritivo (`logo.jpg`, `banner.jpg`, `banner_instagram_02.jpg`).
+**Files:** minúsculo, kebab-case. Páginas na raiz (`index.html`, `produto.html`) ou em pasta para URL limpa (`bio/index.html`). CSS/JS em `static/css` e `static/js`. Fotos de produto em `static/produtos/<slug>/`.
 
-**CSS classes:**
-kebab-case, prefixadas por bloco/componente (BEM-like sem `__`/`--` estritos).
-Examples: `.nav-brand`, `.btn-whatsapp`, `.hero-cta`, `.mobile-menu`, `.card`, `.assist-item`, `.insta-card`
+**CSS classes:** kebab-case com prefixo de bloco (BEM-like sem `__`/`--`).
+Ex.: `.product-card`, `.catalog-toolbar`, `.filter-drawer`, `.pd-gallery` (`pd-` = ficha), `.bio-link`. Estados como classe: `.is-active`, `.is-visible`, `.is-broken`, `.open`.
 
-**Variáveis CSS (custom properties):**
-kebab-case dentro de `:root`.
-Examples: `--bg`, `--bg-secondary`, `--text-primary`, `--accent`, `--whatsapp`, `--radius-lg`, `--ease`
+**Variáveis CSS:** kebab-case no `:root` de `site.css` (`--accent`, `--tag-promo`…). Variáveis exclusivas da bio ficam em `.bio`.
 
-**IDs (âncoras de seção):**
-minúsculo, em português, usados tanto para navegação (`href="#produtos"`) quanto para `IntersectionObserver`.
-Examples: `#inicio`, `#produtos`, `#assistencia`, `#ofertas`, `#contato`
+**IDs de seção:** minúsculo, em português (`#catalogo`, `#vantagens`, `#contato`).
 
-**JavaScript:**
-camelCase para variáveis e funções; `UPPER_SNAKE_CASE` para uma constante de configuração.
-Examples: `waUrl()`, `onScroll()`, `sectionObserver`, `WA_NUMBER`
+**JavaScript:** ES5-style (`var`, funções, IIFE), sem módulos nem build. camelCase; `UPPER_SNAKE_CASE` para constantes (`WA_NUMBER`, `CATALOG_URL`, `VANTAGENS`). APIs compartilhadas em `window.JC` e `window.JCCore`.
+
+**Dados (JSON):** chaves em português, camelCase (`precoOriginal`, `adicionadoEm`).
 
 ## Code Organization
 
-**Import/Dependency Declaration:**
-Não há imports — scripts externos (GA4, fontes) via `<script>`/`<link>` no `<head>`; lógica própria em um único `<script>` no fim do `<body>`.
-
-**File Structure (dentro de `index.html`):**
-`<head>` (meta + GA4 + fontes + `<style>`) → `<body>` (nav → mobile menu → main com seções → footer → `<script>`).
-
-## Type Safety/Documentation
-
-**Approach:** JavaScript sem tipos, sem TypeScript. Nenhum comentário de documentação formal (JSDoc); comentários HTML (`<!-- NAV -->`) marcam blocos de seção.
+Cada página carrega, nesta ordem: `catalogo-core.js` (se usa catálogo) → `common.js` → script da página, no fim do `<body>`. Caminhos sempre **relativos** (funciona em domínio próprio e em `usuario.github.io/repo/`).
 
 ## Error Handling
 
-**Pattern:** Defensivo simples — checagem de feature (`if ("IntersectionObserver" in window)`) e de disponibilidade de função (`typeof gtag === "function"`) antes de usar. Sem try/catch (não há operações que lancem exceção esperada — tudo é manipulação de DOM síncrona).
+Defensivo e visível para o usuário: falha de `fetch` ou JSON inválido mostra um bloco `.catalog-state` com CTA de WhatsApp. Produto inválido no JSON é descartado com `console.warn` citando o slug. Imagem quebrada vira placeholder (`.is-broken`).
 
-## Comments/Documentation
+## Comments
 
-**Style:** Comentários HTML curtos delimitando seções (`<!-- NAV -->`, `<!-- MENU MOBILE -->`, `<!-- Google tag (gtag.js) -->`). Nenhum comentário explicativo de lógica dentro do JS — o código é curto o suficiente para se explicar por nomes.
+Comentários curtos explicando o **porquê** (ex.: por que só a primeira renderização anima). Comentários HTML delimitam seções (`<!-- CATÁLOGO -->`).
+
+## Commits
+
+Gitmoji + escopo: `:sparkles: catalogo: ...`, `:lipstick: ...`, `:recycle: ...`.

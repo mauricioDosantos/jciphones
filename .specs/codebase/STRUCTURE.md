@@ -1,63 +1,52 @@
 # Project Structure
 
 **Root:** `/Users/mc/Projects/jciphone`
+**Atualizado:** 2026-09-23 (AD-004/AD-005 — catálogo via JSON, 3 páginas, CSS/JS compartilhados)
 
 ## Directory Tree
 
 ```
 jciphone/
-├── index.html              # site publicado (GitHub Pages) — head + body + script único
+├── index.html               # home: hero, #catalogo, #vantagens, #assistencia, #porque, #ofertas, #novidades, #contato
+├── produto.html             # ficha do produto (?p=<slug>), conteúdo renderizado via JS
+├── bio/index.html           # página link-na-bio (/bio/)
 ├── pagina_iphone.html       # cópia local do apple.com/br, só referência visual (não servido)
-├── README.md
+├── README.md                # guia de manutenção do catálogo
+├── data/
+│   └── catalogo.json        # fonte única do catálogo
 ├── static/
-│   ├── logo.jpg
-│   ├── banner.jpg
-│   ├── banner_instagram_02.jpg
-│   └── banner_instagram_03.jpg
-└── .specs/                 # documentação de planejamento (este diretório)
+│   ├── css/site.css         # tokens, nav, botões, seções da home, footer, reveal
+│   ├── css/catalogo.css     # selos, cards, grid, toolbar, gaveta de filtros, ficha, vantagens
+│   ├── css/bio.css          # página da bio (tema escuro)
+│   ├── js/common.js         # window.JC: WhatsApp, GA4, menu, reveal, loadCatalog, renderCard, vantagens
+│   ├── js/catalogo-core.js  # window.JCCore / module.exports: regras puras (filtro, ordem, URL, validação)
+│   ├── js/catalogo.js       # seção #catalogo da home
+│   ├── js/produto.js        # ficha do produto
+│   ├── produtos/<slug>/     # fotos dos produtos (hoje: placeholders SVG)
+│   ├── bio-banner.jpg       # recorte leve do banner para a bio
+│   └── logo.jpg, banner*.jpg
+├── tests/
+│   ├── catalogo-core.test.js
+│   └── catalogo-json.test.js
+├── docs/plans/              # estudo do concorrente
+└── .specs/                  # planejamento spec-driven
 ```
-
-## Module Organization
-
-### Marketing/Vitrine (`index.html`)
-
-**Purpose:** única "aplicação" do projeto — página de vendas com catálogo, assistência, ofertas e contato
-**Location:** `index.html`, seções por `<section id="...">`
-**Key files:** `index.html`
-
-### Assets visuais
-
-**Purpose:** imagens usadas em banners/hero/instagram
-**Location:** `static/`
-**Key files:** `logo.jpg` (marca), `banner*.jpg` (hero/ofertas)
 
 ## Where Things Live
 
 **Catálogo de produtos:**
 
-- UI/Interface: seção `#produtos` em `index.html`
-- Business Logic: nenhuma (conteúdo estático, sem dados dinâmicos)
-- Data Access: nenhuma (sem backend/API)
-- Configuration: nenhuma
+- Dados: `data/catalogo.json` + `static/produtos/`
+- Regras: `static/js/catalogo-core.js`
+- UI home: `#catalogo` em `index.html` + `static/js/catalogo.js`
+- UI ficha: `produto.html` + `static/js/produto.js`
+- Card compartilhado: `JC.renderCard` em `static/js/common.js`
 
 **Conversão via WhatsApp:**
 
-- UI/Interface: botões `.btn-whatsapp` / links `[data-wa-text]` espalhados pela página
-- Business Logic: montagem da URL `wa.me` no script final de `index.html`
-- Configuration: constante `WA_NUMBER` no mesmo script
+- Links `[data-wa-text]` (estáticos ou renderizados) → `JC.bindWaLinks()`
+- Número: `WA_NUMBER` em `static/js/common.js` (+ links em `<noscript>`)
 
-**Analytics/Telemetria:**
+**Vantagens:** constante `VANTAGENS` + `JC.renderVantagens()` em `common.js`; elementos `[data-vantagens]`
 
-- UI/Interface: n/a (invisível ao usuário)
-- Business Logic: função `track()` no script final de `index.html`
-- Configuration: snippet `gtag.js` no `<head>` (measurement ID `G-FJ1ECSJ4RF`)
-
-## Special Directories
-
-**`static/`:**
-**Purpose:** todos os assets de imagem referenciados pela página
-**Examples:** `logo.jpg`, `banner.jpg`
-
-**`.specs/`:**
-**Purpose:** documentação de planejamento gerada pela metodologia spec-driven (este projeto)
-**Examples:** `project/PROJECT.md`, `features/*/spec.md`
+**Analytics:** snippet gtag no `<head>` de cada página; eventos via `JC.track()`

@@ -12,7 +12,7 @@
 ## Frontend
 
 - UI Framework: nenhum — markup semântico manual
-- Styling: CSS puro dentro de `<style>` no `<head>`, com variáveis (`:root { --bg, --accent, ... }`)
+- Styling: CSS puro em `static/css/` (`site.css`, `catalogo.css`, `bio.css`), com variáveis no `:root`
 - State Management: nenhum — estado de UI (menu mobile, nav scrolled) via toggle de classes
 - Form Handling: não há formulários — toda conversão é link `wa.me/...`
 
@@ -22,10 +22,8 @@
 
 ## Testing
 
-- Unit: nenhum
-- Integration: nenhum
-- E2E: nenhum
-- **Gap:** sem qualquer automação de teste (ver `CONCERNS.md`)
+- Unit: `node --test` (embutido no Node ≥ 18), ver `TESTING.md`
+- E2E: não versionado
 
 ## External Services
 
