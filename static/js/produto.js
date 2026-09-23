@@ -6,6 +6,7 @@
   if (!root) return;
 
   var slug = new URLSearchParams(location.search).get("p");
+  bindBackLink();
 
   function notFound() {
     document.title = "Produto não encontrado | JC Iphones";
@@ -126,6 +127,30 @@
     });
   }
 
+  function renderRelated(products, p) {
+    var related = JCCore.relatedProducts(products, p, 4);
+    if (!related.length) return;
+    var section = document.getElementById("relacionados");
+    var relatedGrid = document.getElementById("relatedGrid");
+    relatedGrid.innerHTML = related.map(function (item) { return JC.renderCard(item, "relacionados"); }).join("");
+    section.hidden = false;
+    JC.observeReveal(relatedGrid);
+  }
+
+  // Vindo do catálogo, "voltar" usa o histórico: restaura filtros (URL) e a posição de rolagem.
+  function bindBackLink() {
+    var back = document.getElementById("backLink");
+    var ref;
+    try { ref = new URL(document.referrer); } catch (e) { return; }
+    var dir = location.pathname.replace(/produto\.html$/, "");
+    var fromHome = ref.origin === location.origin && (ref.pathname === dir || ref.pathname === dir + "index.html");
+    if (!back || !fromHome || history.length < 2) return;
+    back.addEventListener("click", function (e) {
+      e.preventDefault();
+      history.back();
+    });
+  }
+
   function updateMeta(p) {
     document.title = p.nome + " | JC Iphones";
     var description = p.nome + " " + JC.CONDICAO_LABEL[p.condicao].toLowerCase() + " por " + JCCore.formatPrice(p.preco) +
@@ -140,6 +165,7 @@
       if (!p || !JCCore.isAvailable(p)) return notFound();
 
       renderProduct(p);
+      renderRelated(catalog.produtos, p);
       updateMeta(p);
       JC.track("view_item", {
         currency: "BRL",
