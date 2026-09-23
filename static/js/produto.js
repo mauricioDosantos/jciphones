@@ -47,6 +47,26 @@
       "</div>";
     JC.bindWaLinks(root);
     bindGallery();
+    renderStickyBar(p);
+  }
+
+  // Celular: repete preço + CTA no rodapé enquanto o botão principal está fora da tela.
+  function renderStickyBar(p) {
+    var cta = document.getElementById("pdCta");
+    if (!("IntersectionObserver" in window) || !cta) return;
+    var bar = document.createElement("div");
+    bar.className = "pd-bar";
+    bar.innerHTML =
+      '<div class="pd-bar-price"><small>' + JC.escapeHtml(p.nome) + "</small><strong>" + JCCore.formatPrice(p.preco) + "</strong></div>" +
+      '<a class="btn btn-whatsapp" data-wa-location="ficha_barra" data-item-id="' + JC.escapeHtml(p.slug) + '"' +
+      ' data-wa-text="' + JC.escapeHtml(JC.productMessage(p)) + '">Garantir sua unidade</a>';
+    document.body.appendChild(bar);
+    document.body.classList.add("has-pd-bar");
+    JC.bindWaLinks(bar);
+
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle("is-visible", !entries[0].isIntersecting);
+    }).observe(cta);
   }
 
   function renderGallery(p) {
