@@ -49,10 +49,10 @@ As objeções mais comuns antes do contato — "tem garantia?", "como pago?", "e
 
 | Requirement ID | Story                                      | Phase  | Status  |
 | -------------- | ------------------------------------------ | ------ | ------- |
-| VANT-01        | P1: bloco de vantagens na home              | Tasks | In Tasks |
-| VANT-02        | P1: reconciliar com `#porque`               | Tasks | In Tasks |
-| VANT-03        | P1: vantagens compactas na ficha            | Tasks | In Tasks |
-| VANT-04        | P1: "Entrega ou retirada" abre WhatsApp     | Tasks | In Tasks |
+| VANT-01        | P1: bloco de vantagens na home              | Done | Verified |
+| VANT-02        | P1: reconciliar com `#porque`               | Done | Verified |
+| VANT-03        | P1: vantagens compactas na ficha            | Done | Verified |
+| VANT-04        | P1: "Entrega ou retirada" abre WhatsApp     | Done | Verified |
 
 **Coverage:** todos os requisitos mapeados em `catalogo-e-ficha-produto/tasks.md`
 

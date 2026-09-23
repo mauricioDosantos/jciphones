@@ -17,17 +17,17 @@
 - Snippet gtag.js (G-FJ1ECSJ4RF) integrado no `<head>`
 - Eventos customizados: whatsapp_click, nav_click, cta_click, section_view, scroll_depth, time_on_page
 
-**Catálogo e Ficha de Produto** - SPECIFIED (revisado 2026-09-23, AD-004)
+**Catálogo e Ficha de Produto** - COMPLETE (2026-09-23, aguardando dados reais)
 
 - Catálogo lido de `data/catalogo.json`, imagens em `static/produtos/`
 - Abas Dispositivos / Acessórios, busca, ordenação e filtros (preço, linha, condição)
 - Ficha em `produto.html?p=slug` com botão "Garantir sua unidade" e "Você também pode gostar"
 
-**Vantagens JC Iphones** - SPECIFIED
+**Vantagens JC Iphones** - COMPLETE
 
 - Garantia, formas de pagamento e entrega/retirada na home e na ficha
 
-**Página Link-na-Bio** - SPECIFIED (revisado 2026-09-23, AD-004)
+**Página Link-na-Bio** - COMPLETE (aguardando URL do Instagram)
 
 - Página própria em `/bio/` no layout da referência iPortess
 - Botões: Entre em contato, Veja o nosso catálogo, Nosso Instagram, Ver localização

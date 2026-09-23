@@ -1,7 +1,7 @@
 # State
 
 **Last Updated:** 2026-09-23T00:00:00-03:00
-**Current Work:** Specs revisados (AD-004): `catalogo-e-ficha-produto`, `vantagens-jciphones`, `pagina-inicio-bio`. Design do catálogo em Draft (`catalogo-e-ficha-produto/design.md`, cobre também a base de bio e vantagens). Tasks criadas (`catalogo-e-ficha-produto/tasks.md`, T1–T26, ~14h dev estimadas). Próximo passo: Execute a partir de T1.
+**Current Work:** Catálogo (JSON + filtros), ficha do produto, vantagens e página `/bio/` implementados e verificados no branch `feat/catalogo-json` (T1–T26). Próximo passo: dados reais (produtos, fotos, WhatsApp, Instagram, domínio) e publicação.
 
 ---
 
@@ -64,7 +64,9 @@
 
 ## Lessons Learned
 
-_Nenhuma lição registrada ainda — projeto em fase de planejamento._
+- **`node --test tests/` não funciona no Node 24** — usar `node --test` sem argumento (descobre `**/*.test.js`).
+- **Estilos globais por tag vazam para componentes**: `footer { ... }` do site pintou o rodapé da gaveta de filtros e da bio. Em componentes novos, preferir `div` + classe ou sobrescrever explicitamente.
+- **Normalizar entrada enquanto o usuário digita causa briga entre campos** (mín/máx de preço). Guardar o valor cru no estado e normalizar só ao filtrar.
 
 ---
 
@@ -72,7 +74,7 @@ _Nenhuma lição registrada ainda — projeto em fase de planejamento._
 
 | #   | Description                                                       | Date       | Commit | Status  |
 | --- | ------------------------------------------------------------------ | ---------- | ------ | ------- |
-| 001 | Integrar snippet Google Analytics (gtag.js) + eventos customizados | 2026-09-18 | -      | ✅ Done |
+| 001 | Integrar snippet Google Analytics (gtag.js) + eventos customizados | 2026-09-18 | fc409cb | ✅ Done |
 
 ---
 
@@ -89,7 +91,8 @@ _Nenhuma lição registrada ainda — projeto em fase de planejamento._
 
 - [ ] Confirmar com o cliente o número real de WhatsApp antes de qualquer publicação (bloqueia B-001)
 - [ ] Confirmar com o cliente as fotos reais dos produtos e preços/parcelamentos para popular o catálogo
-- [ ] Rever a estimativa de 7h dev + 2h publicação com o cliente após a AD-004
+- [ ] Rever a estimativa de 7h dev + 2h publicação com o cliente após a AD-004 (estimativa em `tasks.md`: ~14h dev)
+- [ ] Substituir `data/catalogo.json` de exemplo e os placeholders SVG de `static/produtos/` pelos produtos reais
 - [ ] Obter a URL do Instagram da loja (necessária para a página `/bio/`; hoje `href="#"` com TODO em `bio/index.html` e no rodapé)
 - [ ] Confirmar o domínio final: as meta tags OG de `bio/index.html` usam `https://mauriciodosantos.github.io/jciphones/` (padrão do GitHub Pages para o remote atual)
 

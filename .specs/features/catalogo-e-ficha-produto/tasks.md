@@ -2,7 +2,7 @@
 
 **Design**: `.specs/features/catalogo-e-ficha-produto/design.md`
 **Specs cobertos**: `catalogo-e-ficha-produto` (CAT), `vantagens-jciphones` (VANT), `pagina-inicio-bio` (BIO)
-**Status**: Draft
+**Status**: Done (2026-09-23) — UAT 86/86, `node --test` 22/22
 
 > Um único arquivo de tasks para as 3 features, porque elas dividem a mesma base (T1–T3, T8). Commits seguem o gitmoji já usado no repo: `:emoji: escopo: descrição`.
 
@@ -72,8 +72,8 @@ tudo ──→ T25 → T26
 
 **Done when**:
 
-- [ ] `index.html` não tem mais bloco `<style>`
-- [ ] A página renderiza idêntica à versão anterior em 375px e 1280px
+- [x] `index.html` não tem mais bloco `<style>`
+- [x] A página renderiza idêntica à versão anterior em 375px e 1280px
 
 **Verify**:
 `grep -c "<style" index.html` → `0`. Screenshot antes/depois em 375px e 1280px, sem diferença visual.
@@ -92,10 +92,10 @@ tudo ──→ T25 → T26
 
 **Done when**:
 
-- [ ] `index.html` carrega `static/js/common.js` com `defer` e não tem mais JS inline próprio (o snippet do gtag continua no `<head>`)
-- [ ] Links `[data-wa-text]` continuam gerando `wa.me/...`
-- [ ] O menu mobile abre e fecha com o ícone correto em 3 toques seguidos
-- [ ] Nenhum erro no console, na home e em uma página sem `#nav`
+- [x] `index.html` carrega `static/js/common.js` com `defer` e não tem mais JS inline próprio (o snippet do gtag continua no `<head>`)
+- [x] Links `[data-wa-text]` continuam gerando `wa.me/...`
+- [x] O menu mobile abre e fecha com o ícone correto em 3 toques seguidos
+- [x] Nenhum erro no console, na home e em uma página sem `#nav`
 
 **Verify**:
 Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUrl("oi")` retorna `https://wa.me/5511999999999?text=oi`. Tocar 3x no menu mobile.
@@ -113,8 +113,8 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] JSON válido e todos os caminhos de `imagens` existem
-- [ ] Cada combinação da lista acima aparece em pelo menos um produto
+- [x] JSON válido e todos os caminhos de `imagens` existem
+- [x] Cada combinação da lista acima aparece em pelo menos um produto
 
 **Verify**:
 `python3 -m json.tool data/catalogo.json > /dev/null && echo ok` → `ok` (a validação completa vem em T7).
@@ -134,13 +134,13 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Busca "IPHONE 13" e "iphone 13" retornam o mesmo resultado; "acessorio" encontra "Acessório"
-- [ ] Linhas combinadas com OU; critérios diferentes combinados com E
-- [ ] `min > max` é trocado; `min`/`max` vazios são ignorados
-- [ ] Produto sem `linha` fica fora quando há filtro de linha ativo
-- [ ] `sortProducts` não altera o array original; "recente" desempata por nome
-- [ ] `linesFor` ordena "iPhone 9" antes de "iPhone 13"
-- [ ] Tests pass: `node --test`
+- [x] Busca "IPHONE 13" e "iphone 13" retornam o mesmo resultado; "acessorio" encontra "Acessório"
+- [x] Linhas combinadas com OU; critérios diferentes combinados com E
+- [x] `min > max` é trocado; `min`/`max` vazios são ignorados
+- [x] Produto sem `linha` fica fora quando há filtro de linha ativo
+- [x] `sortProducts` não altera o array original; "recente" desempata por nome
+- [x] `linesFor` ordena "iPhone 9" antes de "iPhone 13"
+- [x] Tests pass: `node --test`
 
 **Verify**: `node --test` → todos `ok`, 0 falhas.
 
@@ -157,11 +157,11 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] `discountPercent` retorna `null` sem `precoOriginal` ou quando `precoOriginal <= preco`
-- [ ] `urgencyLabel`: 1 → "Última unidade", 2 → "Últimas 2 unidades", outros → `null`
-- [ ] `formatPrice(3199)` → `"R$ 3.199,00"` (comparar ignorando o espaço inseparável)
-- [ ] `relatedProducts` nunca inclui o produto atual nem estoque 0, prioriza mesmo `tipo` → mesmo `grupo`, respeita `limit` e retorna `[]` com catálogo de 1 item
-- [ ] Tests pass: `node --test`
+- [x] `discountPercent` retorna `null` sem `precoOriginal` ou quando `precoOriginal <= preco`
+- [x] `urgencyLabel`: 1 → "Última unidade", 2 → "Últimas 2 unidades", outros → `null`
+- [x] `formatPrice(3199)` → `"R$ 3.199,00"` (comparar ignorando o espaço inseparável)
+- [x] `relatedProducts` nunca inclui o produto atual nem estoque 0, prioriza mesmo `tipo` → mesmo `grupo`, respeita `limit` e retorna `[]` com catálogo de 1 item
+- [x] Tests pass: `node --test`
 
 **Verify**: `node --test`
 
@@ -178,10 +178,10 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Ida e volta (`stateFromQuery(stateToQuery(s))`) preserva o estado, inclusive linhas com espaço e acento
-- [ ] Estado padrão gera string vazia
-- [ ] Valores inválidos na URL (`grupo=xyz`, `min=abc`) caem no padrão sem lançar erro
-- [ ] Tests pass: `node --test`
+- [x] Ida e volta (`stateFromQuery(stateToQuery(s))`) preserva o estado, inclusive linhas com espaço e acento
+- [x] Estado padrão gera string vazia
+- [x] Valores inválidos na URL (`grupo=xyz`, `min=abc`) caem no padrão sem lançar erro
+- [x] Tests pass: `node --test`
 
 **Verify**: `node --test`
 
@@ -198,9 +198,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Passa com o JSON de exemplo
-- [ ] Falha com mensagem citando o slug quando um campo obrigatório é removido ou uma imagem não existe (testar manualmente e reverter)
-- [ ] Tests pass: `node --test`
+- [x] Passa com o JSON de exemplo
+- [x] Falha com mensagem citando o slug quando um campo obrigatório é removido ou uma imagem não existe (testar manualmente e reverter)
+- [x] Tests pass: `node --test`
 
 **Verify**: `node --test`
 
@@ -218,10 +218,10 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] `JC.escapeHtml('<b>"x"</b>')` → `&lt;b&gt;&quot;x&quot;&lt;/b&gt;`
-- [ ] `JC.loadCatalog` rejeita com JSON inválido/404 e resolve com os produtos válidos
-- [ ] `JC.productMessage` contém nome, "Novo"/"Seminovo" e preço formatado
-- [ ] `JC.renderCard` gera um `<a href="produto.html?p=slug">` com os selos condicionais corretos
+- [x] `JC.escapeHtml('<b>"x"</b>')` → `&lt;b&gt;&quot;x&quot;&lt;/b&gt;`
+- [x] `JC.loadCatalog` rejeita com JSON inválido/404 e resolve com os produtos válidos
+- [x] `JC.productMessage` contém nome, "Novo"/"Seminovo" e preço formatado
+- [x] `JC.renderCard` gera um `<a href="produto.html?p=slug">` com os selos condicionais corretos
 
 **Verify**: No console do navegador em `/`: `JC.loadCatalog("data/catalogo.json").then(c => JC.renderCard(c.produtos[0]))` retorna o HTML esperado.
 
@@ -240,9 +240,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Nome longo corta em 2 linhas
-- [ ] Nenhuma cor hardcoded fora dos tokens, exceto as dos selos (definidas como novos tokens em `site.css`)
-- [ ] 2 colunas em 360px sem scroll horizontal
+- [x] Nome longo corta em 2 linhas
+- [x] Nenhuma cor hardcoded fora dos tokens, exceto as dos selos (definidas como novos tokens em `site.css`)
+- [x] 2 colunas em 360px sem scroll horizontal
 
 **Verify**: Revisão visual junto com T11.
 
@@ -261,9 +261,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] `#produtos` não existe mais; `grep -c 'href="#produtos"' index.html` → `0`
-- [ ] Todos os controles têm `<label>` ou `aria-label`
-- [ ] Com JS desativado, o `<noscript>` mostra mensagem + link de WhatsApp
+- [x] `#produtos` não existe mais; `grep -c 'href="#produtos"' index.html` → `0`
+- [x] Todos os controles têm `<label>` ou `aria-label`
+- [x] Com JS desativado, o `<noscript>` mostra mensagem + link de WhatsApp
 
 **Verify**: `grep -n 'id="catalogo"' index.html` → 1 ocorrência. Abrir com JS desativado.
 
@@ -280,9 +280,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Os cards batem com o JSON (produto com estoque 0 não aparece)
-- [ ] Renomear temporariamente o JSON mostra o estado de erro com WhatsApp, e o resto da página continua funcionando
-- [ ] Sem scroll horizontal em 360px
+- [x] Os cards batem com o JSON (produto com estoque 0 não aparece)
+- [x] Renomear temporariamente o JSON mostra o estado de erro com WhatsApp, e o resto da página continua funcionando
+- [x] Sem scroll horizontal em 360px
 
 **Verify**: Servidor local, comparar cards com o JSON em 360px e 1280px; teste de erro renomeando o arquivo.
 
@@ -299,10 +299,10 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Aba "Acessórios" mostra só acessórios e fica ativa (`aria-selected`)
-- [ ] Busca sem acento encontra nome com acento
-- [ ] As 3 ordenações conferem com o JSON
-- [ ] Recarregar a página com `?grupo=acessorio&q=capa&ordem=menor-preco#catalogo` restaura exatamente esse estado
+- [x] Aba "Acessórios" mostra só acessórios e fica ativa (`aria-selected`)
+- [x] Busca sem acento encontra nome com acento
+- [x] As 3 ordenações conferem com o JSON
+- [x] Recarregar a página com `?grupo=acessorio&q=capa&ordem=menor-preco#catalogo` restaura exatamente esse estado
 
 **Verify**: Manual + URL de teste acima.
 
@@ -319,10 +319,10 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Combinação aba + busca + preço + linha + condição confere com o JSON filtrado à mão
-- [ ] Badge mostra a quantidade de grupos de filtro ativos; "Limpar filtros" zera os filtros e mantém aba e busca
-- [ ] Esc fecha e devolve o foco ao botão "Filtros"
-- [ ] O estado vazio aparece quando nada casa e o "Limpar filtros" dele funciona
+- [x] Combinação aba + busca + preço + linha + condição confere com o JSON filtrado à mão
+- [x] Badge mostra a quantidade de grupos de filtro ativos; "Limpar filtros" zera os filtros e mantém aba e busca
+- [x] Esc fecha e devolve o foco ao botão "Filtros"
+- [x] O estado vazio aparece quando nada casa e o "Limpar filtros" dele funciona
 
 **Verify**: Manual em 360px e 1280px.
 
@@ -339,8 +339,8 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Cada evento aparece uma única vez por ação no GA4 DebugView (ou em `dataLayer` no console)
-- [ ] Digitar "iphone" rápido gera 1 `catalog_search`, não 6
+- [x] Cada evento aparece uma única vez por ação no GA4 DebugView (ou em `dataLayer` no console)
+- [x] Digitar "iphone" rápido gera 1 `catalog_search`, não 6
 
 **Verify**: Console: `dataLayer.filter(e => e[0] === "event").map(e => e[1])` depois de cada ação.
 
@@ -359,8 +359,8 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Nav, menu mobile e footer funcionam igual à home; links do menu levam às seções da home
-- [ ] Console limpo
+- [x] Nav, menu mobile e footer funcionam igual à home; links do menu levam às seções da home
+- [x] Console limpo
 
 **Verify**: Abrir `/produto.html` no servidor local.
 
@@ -377,10 +377,10 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] 3 produtos diferentes conferem com o JSON; aba mostra "{nome} | JC Iphones"
-- [ ] O botão "Garantir sua unidade" abre `wa.me` com nome, condição e preço
-- [ ] Produto sem `especificacoes` não mostra a seção vazia
-- [ ] `?p=` ausente, slug inexistente ou estoque 0 mostram o estado "não encontrado" com links
+- [x] 3 produtos diferentes conferem com o JSON; aba mostra "{nome} | JC Iphones"
+- [x] O botão "Garantir sua unidade" abre `wa.me` com nome, condição e preço
+- [x] Produto sem `especificacoes` não mostra a seção vazia
+- [x] `?p=` ausente, slug inexistente ou estoque 0 mostram o estado "não encontrado" com links
 
 **Verify**: `/produto.html?p=<slug>` para cada caso acima.
 
@@ -397,8 +397,8 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Produto com 3 imagens: miniaturas trocam a principal no desktop; swipe funciona no celular
-- [ ] Produto com 1 imagem não mostra miniaturas
+- [x] Produto com 3 imagens: miniaturas trocam a principal no desktop; swipe funciona no celular
+- [x] Produto com 1 imagem não mostra miniaturas
 
 **Verify**: Manual em 375px (emulação touch) e 1280px.
 
@@ -415,8 +415,8 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Em 375×667 o botão "Garantir sua unidade" está sempre visível (o original ou o da barra)
-- [ ] A barra não aparece no desktop e não cobre o footer no fim da página (padding inferior no `main`)
+- [x] Em 375×667 o botão "Garantir sua unidade" está sempre visível (o original ou o da barra)
+- [x] A barra não aparece no desktop e não cobre o footer no fim da página (padding inferior no `main`)
 
 **Verify**: Rolar a ficha em 375×667.
 
@@ -433,9 +433,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Até 4 relacionados, sem o produto atual e sem estoque 0; priorizam o mesmo tipo
-- [ ] Clique em um relacionado abre a ficha dele
-- [ ] Vindo do catálogo filtrado, "Voltar" restaura filtros e posição; abrindo a ficha direto, "Voltar" leva para `./#catalogo`
+- [x] Até 4 relacionados, sem o produto atual e sem estoque 0; priorizam o mesmo tipo
+- [x] Clique em um relacionado abre a ficha dele
+- [x] Vindo do catálogo filtrado, "Voltar" restaura filtros e posição; abrindo a ficha direto, "Voltar" leva para `./#catalogo`
 
 **Verify**: Fluxo manual catálogo filtrado → ficha → voltar; e link da ficha aberto em aba nova → voltar.
 
@@ -454,9 +454,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Os 3 textos aparecem idênticos na home e na ficha
-- [ ] "Entrega ou retirada" abre o WhatsApp com a mensagem de entrega
-- [ ] Sem scroll horizontal em 360px
+- [x] Os 3 textos aparecem idênticos na home e na ficha
+- [x] "Entrega ou retirada" abre o WhatsApp com a mensagem de entrega
+- [x] Sem scroll horizontal em 360px
 
 **Verify**: `grep -rn "6 meses da loja" index.html produto.html static/js` → só 1 ocorrência (em `common.js`).
 
@@ -473,8 +473,8 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Nenhum texto do site contradiz "Pix ou cartão" ou a política de garantia
-- [ ] A decisão tomada está registrada em `STATE.md`
+- [x] Nenhum texto do site contradiz "Pix ou cartão" ou a política de garantia
+- [x] A decisão tomada está registrada em `STATE.md`
 
 **Verify**: `grep -n -i "parcelamento\|garantia de verdade" index.html` → sem ocorrência em `#porque`.
 
@@ -493,10 +493,10 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Em 375×667, logo, título e os 4 botões aparecem sem scroll horizontal; alvos de toque ≥ 44px
-- [ ] Cada botão leva ao destino correto; `bio_click` é disparado
-- [ ] Sem banner, o topo cai para cor sólida sem quebrar
-- [ ] O link do Instagram é placeholder com `TODO` enquanto a URL não for fornecida (Todo em `STATE.md`)
+- [x] Em 375×667, logo, título e os 4 botões aparecem sem scroll horizontal; alvos de toque ≥ 44px
+- [x] Cada botão leva ao destino correto; `bio_click` é disparado
+- [x] Sem banner, o topo cai para cor sólida sem quebrar
+- [x] O link do Instagram é placeholder com `TODO` enquanto a URL não for fornecida (Todo em `STATE.md`)
 
 **Verify**: Abrir `/bio/` no servidor local em 375px e clicar nos 4 botões.
 
@@ -513,7 +513,7 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Meta tags presentes; após o deploy, o preview aparece ao colar o link no WhatsApp
+- [x] Meta tags presentes; após o deploy, o preview aparece ao colar o link no WhatsApp
 
 **Verify**: `grep -c 'property="og:' bio/index.html` → ≥ 4.
 
@@ -530,7 +530,7 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] `grep -rn "7h às 18h" --include=*.html .` não retorna nada
+- [x] `grep -rn "7h às 18h" --include=*.html .` não retorna nada
 
 **Verify**: comando acima.
 
@@ -549,7 +549,7 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Uma pessoa sem contexto consegue adicionar um produto seguindo só o README
+- [x] Uma pessoa sem contexto consegue adicionar um produto seguindo só o README
 
 **Commit**: `:memo: docs: guia de manutenção do catálogo`
 
@@ -566,9 +566,9 @@ Servidor local (`python3 -m http.server`) → abrir `/`, console limpo, `JC.waUr
 
 **Done when**:
 
-- [ ] Todos os critérios P1 passam; falhas de P2/P3 viram tasks ou Todos em `STATE.md`
-- [ ] `node --test` passa
-- [ ] Console sem erros nas 3 páginas
+- [x] Todos os critérios P1 passam; falhas de P2/P3 viram tasks ou Todos em `STATE.md`
+- [x] `node --test` passa
+- [x] Console sem erros nas 3 páginas
 
 **Commit**: `:white_check_mark: uat: valida catálogo, ficha, vantagens e bio`
 

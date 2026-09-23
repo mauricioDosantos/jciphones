@@ -79,11 +79,11 @@ O Instagram permite um único link na bio. Mandar esse link para a home completa
 
 | Requirement ID | Story                                  | Phase  | Status  |
 | -------------- | -------------------------------------- | ------ | ------- |
-| BIO-01         | P1: página `/bio/` com layout de referência | Tasks | In Tasks |
-| BIO-02         | P1: 4 botões com destinos corretos      | Tasks | In Tasks |
-| BIO-03         | P1: mobile-first + GA4                  | Tasks | In Tasks |
-| BIO-04         | P2: horário 8h–18h em todo o site        | Tasks | In Tasks |
-| BIO-05         | P2: meta tags Open Graph                 | Tasks | In Tasks |
+| BIO-01         | P1: página `/bio/` com layout de referência | Done | Verified |
+| BIO-02         | P1: 4 botões com destinos corretos      | Done | Verified |
+| BIO-03         | P1: mobile-first + GA4                  | Done | Verified |
+| BIO-04         | P2: horário 8h–18h em todo o site        | Done | Verified |
+| BIO-05         | P2: meta tags Open Graph                 | Done | Verified |
 
 **Coverage:** todos os requisitos mapeados em `catalogo-e-ficha-produto/tasks.md`
 

@@ -174,18 +174,18 @@ Classificação acordada: **Dispositivos** = iPhone, notebook, caixa de som, tab
 
 | Requirement ID | Story                                   | Phase  | Status  |
 | -------------- | --------------------------------------- | ------ | ------- |
-| CAT-01         | P1: JSON estático + imagens em static   | Tasks | In Tasks |
-| CAT-02         | P1: catálogo abaixo do hero, cards      | Tasks | In Tasks |
-| CAT-03         | P1: preço/desconto/parcelamento/urgência | Tasks | In Tasks |
-| CAT-04         | P1: abas Dispositivos / Acessórios       | Tasks | In Tasks |
-| CAT-05         | P1: ficha em `produto.html?p=slug`       | Tasks | In Tasks |
-| CAT-06         | P1: botão verde "Garantir sua unidade" → WhatsApp | Tasks | In Tasks |
-| CAT-07         | P1: "Você também pode gostar"            | Tasks | In Tasks |
-| CAT-08         | P2: busca por nome                       | Tasks | In Tasks |
-| CAT-09         | P2: ordenação menor/maior preço, recente | Tasks | In Tasks |
-| CAT-10         | P2: filtros preço/linha/condição         | Tasks | In Tasks |
-| CAT-11         | P3: estado do catálogo na URL            | Tasks | In Tasks |
-| CAT-12         | Edge: vazio / erro / slug inválido       | Tasks | In Tasks |
+| CAT-01         | P1: JSON estático + imagens em static   | Done | Verified |
+| CAT-02         | P1: catálogo abaixo do hero, cards      | Done | Verified |
+| CAT-03         | P1: preço/desconto/parcelamento/urgência | Done | Verified |
+| CAT-04         | P1: abas Dispositivos / Acessórios       | Done | Verified |
+| CAT-05         | P1: ficha em `produto.html?p=slug`       | Done | Verified |
+| CAT-06         | P1: botão verde "Garantir sua unidade" → WhatsApp | Done | Verified |
+| CAT-07         | P1: "Você também pode gostar"            | Done | Verified |
+| CAT-08         | P2: busca por nome                       | Done | Verified |
+| CAT-09         | P2: ordenação menor/maior preço, recente | Done | Verified |
+| CAT-10         | P2: filtros preço/linha/condição         | Done | Verified |
+| CAT-11         | P3: estado do catálogo na URL            | Done | Verified |
+| CAT-12         | Edge: vazio / erro / slug inválido       | Done | Verified |
 
 **Coverage:** todos os requisitos mapeados em `catalogo-e-ficha-produto/tasks.md`
 
