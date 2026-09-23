@@ -7,6 +7,13 @@
 
 ## Recent Decisions (Last 60 days)
 
+### AD-006: Seção "Por que escolher" mantida com 2 itens (2026-09-23)
+
+**Decision:** "Garantia de verdade" e "Parcelamento" saíram de `#porque` (cobertos pela nova seção `#vantagens`); ficaram "Atendimento próximo" e "Loja física" em 2 colunas. O selo do hero "Garantia de verdade" virou "Garantia de até 1 ano".
+**Reason:** VANT-02 — evitar texto duplicado ou contraditório com as vantagens oficiais (garantia 1 ano fábrica / 6 meses loja; pix ou cartão).
+**Trade-off:** Nenhum relevante; o conteúdo restante não se repete em outro lugar.
+**Impact:** `index.html` (`#porque`, hero).
+
 ### AD-005: CSS/JS extraídos para arquivos compartilhados (2026-09-23)
 
 **Decision:** Com 3 páginas (`index.html`, `produto.html`, `bio/index.html`), o CSS e o JS inline do `index.html` passam para `static/css/` e `static/js/`. A lógica do catálogo fica em um núcleo puro (`catalogo-core.js`) testado com `node --test`.

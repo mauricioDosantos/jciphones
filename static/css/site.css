@@ -287,6 +287,7 @@ section { padding: 88px 0; }
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
+.diffs-grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin: 0 auto; }
 .diff {
   text-align: center;
   padding: 12px 8px;
