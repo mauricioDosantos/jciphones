@@ -19,6 +19,13 @@
   --nav-h: 48px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --font: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Selos do catálogo */
+  --tag-promo: #d70015;
+  --tag-promo-bg: #ffe9eb;
+  --tag-urgencia: #8a4b00;
+  --tag-urgencia-bg: #fff1d6;
+  --tag-urgencia-dot: #f59e0b;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

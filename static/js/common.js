@@ -85,14 +85,21 @@
       JCCore.formatPrice(p.preco) + ". Ainda está disponível?";
   }
 
-  function renderTags(p) {
+  function conditionTags(p) {
     var html = '<span class="tag tag-' + p.condicao + '">' + CONDICAO_LABEL[p.condicao] + "</span>";
     (p.tags || []).forEach(function (t) {
       html += '<span class="tag tag-extra">' + escapeHtml(t) + "</span>";
     });
-    var urgency = JCCore.urgencyLabel(p);
-    if (urgency) html += '<span class="tag tag-urgencia">' + urgency + "</span>";
     return html;
+  }
+
+  function urgencyTag(p) {
+    var urgency = JCCore.urgencyLabel(p);
+    return urgency ? '<span class="tag tag-urgencia">' + urgency + "</span>" : "";
+  }
+
+  function renderTags(p) {
+    return conditionTags(p) + urgencyTag(p);
   }
 
   function renderPrice(p) {
@@ -113,7 +120,8 @@
         '<div class="product-media">' +
           '<img src="' + escapeHtml(p.imagens[0]) + '" alt="' + escapeHtml(p.nome) + '" loading="lazy" width="600" height="600"' +
           ' onerror="this.onerror=null;this.parentNode.classList.add(\'is-broken\')">' +
-          '<div class="product-tags">' + renderTags(p) + "</div>" +
+          '<div class="product-tags">' + conditionTags(p) + "</div>" +
+          (JCCore.urgencyLabel(p) ? '<div class="product-urgency">' + urgencyTag(p) + "</div>" : "") +
         "</div>" +
         '<div class="product-body">' +
           '<h3 class="product-name">' + escapeHtml(p.nome) + "</h3>" +
