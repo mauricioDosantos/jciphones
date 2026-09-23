@@ -58,6 +58,43 @@
 
   var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.14L2 22l5.02-1.6A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-2.98.95.95-2.9-.2-.3a8.2 8.2 0 1 1 6.7 3.58z"/><path d="M16.5 14.2c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.63.15-.18.3-.72.95-.88 1.14-.16.2-.32.22-.6.07-.3-.15-1.24-.46-2.36-1.45-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.45.13-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.63-1.52-.87-2.08-.23-.54-.46-.46-.63-.47h-.54c-.19 0-.5.07-.75.36-.26.3-.99.97-.99 2.36 0 1.39 1.01 2.73 1.15 2.92.14.2 1.98 3.03 4.8 4.25.67.29 1.2.46 1.6.59.68.22 1.3.19 1.78.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.37-.07-.12-.26-.2-.55-.34z"/></svg>';
 
+  // Fonte única dos textos de vantagens (home e ficha).
+  var VANTAGENS = [
+    {
+      titulo: "Garantia JC Iphones",
+      texto: "Garantia de 1 ano da fábrica ou 6 meses da loja",
+      icone: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>'
+    },
+    {
+      titulo: "Forma de pagamento",
+      texto: "Pix ou cartão",
+      icone: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/>'
+    },
+    {
+      titulo: "Entrega ou retirada",
+      texto: "Combine pelo WhatsApp",
+      icone: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
+      wa: "Olá! Gostaria de combinar a entrega ou retirada de um produto."
+    }
+  ];
+
+  function renderVantagens(el, variant) {
+    if (!el) return;
+    el.className = "vantagens vantagens-" + (variant || "full");
+    el.innerHTML = VANTAGENS.map(function (v, i) {
+      var icon = '<span class="vantagem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + v.icone + "</svg></span>";
+      var body = "<strong>" + v.titulo + "</strong><span>" + v.texto + "</span>";
+      if (v.wa) {
+        return '<a class="vantagem vantagem-link' + (variant === "compact" ? "" : " reveal") + '" style="--d:' + i * 0.08 + 's"' +
+          ' data-wa-text="' + escapeHtml(v.wa) + '">' + icon + '<span class="vantagem-body">' + body + "</span></a>";
+      }
+      return '<div class="vantagem' + (variant === "compact" ? "" : " reveal") + '" style="--d:' + i * 0.08 + 's">' +
+        icon + '<span class="vantagem-body">' + body + "</span></div>";
+    }).join("");
+    bindWaLinks(el);
+    observeReveal(el);
+  }
+
   var catalogCache = {};
 
   // Carrega o JSON do catálogo; produtos com erro são descartados com aviso no console.
@@ -155,8 +192,13 @@
     productMessage: productMessage,
     renderTags: renderTags,
     renderPrice: renderPrice,
-    renderCard: renderCard
+    renderCard: renderCard,
+    renderVantagens: renderVantagens
   };
+
+  document.querySelectorAll("[data-vantagens]").forEach(function (el) {
+    renderVantagens(el, el.getAttribute("data-vantagens"));
+  });
 
   bindWaLinks();
 

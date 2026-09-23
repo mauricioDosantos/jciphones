@@ -483,7 +483,7 @@ html:not(.js) .catalog-toolbar { display: none; }
 .pd-cta { margin-top: 6px; }
 .pd-cta svg { width: 22px; height: 22px; }
 .btn-whatsapp.pd-cta { box-shadow: 0 12px 30px -12px rgba(37, 211, 102, 0.8); }
-.pd-cta-note { margin-top: -4px; text-align: center; font-size: 13px; color: var(--text-secondary); }
+.pd-cta-note { margin-top: -4px; text-align: center; text-wrap: balance; font-size: 13px; color: var(--text-secondary); }
 
 .pd-specs { margin-top: 12px; padding: 0; }
 .pd-specs h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
@@ -531,3 +531,56 @@ html:not(.js) .catalog-toolbar { display: none; }
 .related { padding: 56px 0 72px; background: var(--bg-secondary); }
 .related h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 24px; }
 @media (max-width: 479px) { .related > .container { padding: 0 16px; } }
+
+/* ---------- Vantagens ---------- */
+html:not(.js) .vantagens-section { display: none; }
+.vantagens-section { padding-top: 24px; }
+.vantagens-section .section-head { margin-bottom: 32px; }
+
+.vantagens-full { display: grid; gap: 12px; }
+@media (min-width: 768px) { .vantagens-full { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+.vantagens-full .vantagem {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 26px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+}
+@media (max-width: 767px) {
+  .vantagens-full .vantagem { flex-direction: row; align-items: center; padding: 20px; }
+}
+.vantagem-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.vantagem-icon svg { width: 24px; height: 24px; }
+.vantagem-body { display: flex; flex-direction: column; gap: 4px; }
+.vantagem-body strong { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+.vantagem-body span { color: var(--text-secondary); line-height: 1.4; }
+.vantagem-link .vantagem-body span { color: #0a7a35; font-weight: 500; }
+.vantagem-link .vantagem-body span::after { content: " ›"; }
+.vantagem-link { transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+.vantagem-link:hover { transform: translateY(-3px); box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.25); }
+
+.vantagens-compact {
+  display: grid;
+  margin-top: 6px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.vantagens-compact .vantagem { display: flex; align-items: center; gap: 14px; padding: 12px 16px; }
+.vantagens-compact .vantagem + .vantagem { border-top: 1px solid var(--border); }
+.vantagens-compact .vantagem-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--bg-secondary); box-shadow: none; }
+.vantagens-compact .vantagem-icon svg { width: 20px; height: 20px; }
+.vantagens-compact .vantagem-body { gap: 0; }
+.vantagens-compact .vantagem-body strong { font-size: 14px; }
+.vantagens-compact .vantagem-body span { font-size: 14px; }
+.vantagens-compact .vantagem-link:hover { transform: none; box-shadow: none; background: var(--bg-secondary); }

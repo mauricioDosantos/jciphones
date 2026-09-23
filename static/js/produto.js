@@ -47,6 +47,7 @@
         "</div>" +
       "</div>";
     JC.bindWaLinks(root);
+    JC.renderVantagens(document.getElementById("pdVantagens"), "compact");
     bindGallery();
     renderStickyBar(p);
   }
