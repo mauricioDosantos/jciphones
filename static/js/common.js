@@ -119,9 +119,16 @@
     return catalogCache[url];
   }
 
-  function productMessage(p) {
-    return "Olá! Tenho interesse neste produto: " + p.nome + " (" + CONDICAO_LABEL[p.condicao] + "), " +
-      JCCore.formatPrice(p.preco) + ". Ainda está disponível?";
+  function productMessage(p, modelo, cor) {
+    var label = p.nome;
+    var price = JCCore.hasModels(p) ? JCCore.minPrice(p) : p.preco;
+    if (modelo) {
+      label += " " + modelo.armazenamento;
+      price = modelo.preco;
+    }
+    if (cor) label += " (" + cor + ")";
+    return "Olá! Tenho interesse neste produto: " + label + " (" + CONDICAO_LABEL[p.condicao] + "), " +
+      JCCore.formatPrice(price) + ". Ainda está disponível?";
   }
 
   function conditionTags(p) {
@@ -142,8 +149,15 @@
   }
 
   function renderPrice(p) {
-    var discount = JCCore.discountPercent(p);
     var html = '<div class="price">';
+    if (JCCore.hasModels(p)) {
+      if (p.modelos.length > 1) html += '<span class="price-from">A partir de</span>';
+      html += '<strong class="price-now">' + JCCore.formatPrice(JCCore.minPrice(p)) + "</strong>";
+      html += '<small class="price-installments">' +
+        p.modelos.map(function (m) { return escapeHtml(m.armazenamento); }).join(" · ") + "</small>";
+      return html + "</div>";
+    }
+    var discount = JCCore.discountPercent(p);
     if (discount) {
       html += '<div class="price-old"><s>' + JCCore.formatPrice(p.precoOriginal) + '</s> <span class="tag tag-promo">-' + discount + "%</span></div>";
     }
@@ -155,7 +169,7 @@
   function renderCard(p, listName) {
     return '<a class="product-card reveal" href="produto.html?p=' + encodeURIComponent(p.slug) + '"' +
       ' data-slug="' + escapeHtml(p.slug) + '" data-name="' + escapeHtml(p.nome) + '"' +
-      ' data-price="' + p.preco + '" data-list="' + escapeHtml(listName || "catalogo") + '">' +
+      ' data-price="' + JCCore.minPrice(p) + '" data-list="' + escapeHtml(listName || "catalogo") + '">' +
         '<div class="product-media">' +
           '<img src="' + escapeHtml(p.imagens[0]) + '" alt="' + escapeHtml(p.nome) + '" loading="lazy" width="600" height="600"' +
           ' onerror="this.onerror=null;this.parentNode.classList.add(\'is-broken\')">' +

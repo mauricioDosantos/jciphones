@@ -115,6 +115,50 @@ test("relatedProducts: catálogo de 1 item retorna vazio", () => {
   assert.deepEqual(core.relatedProducts([P[0]], P[0]), []);
 });
 
+test("hasModels/minPrice/maxPrice", () => {
+  assert.equal(core.hasModels({ preco: 100 }), false);
+  assert.equal(core.hasModels({ modelos: [{ preco: 100 }] }), true);
+  assert.equal(core.minPrice({ preco: 100 }), 100);
+  assert.equal(core.minPrice({ modelos: [{ preco: 300 }, { preco: 200 }] }), 200);
+  assert.equal(core.maxPrice({ modelos: [{ preco: 300 }, { preco: 200 }] }), 300);
+});
+
+test("isAvailable com modelos: disponível se algum modelo tem cor", () => {
+  assert.equal(core.isAvailable({ modelos: [{ cores: [] }] }), false);
+  assert.equal(core.isAvailable({ modelos: [{ cores: [] }, { cores: ["Preto"] }] }), true);
+  assert.equal(core.isAvailable({ modelos: [{ cores: ["Preto"] }] }), true);
+});
+
+test("filterProducts e sortProducts usam preço mínimo ('a partir de')", () => {
+  const D = [
+    { slug: "pro", nome: "iPhone 14 Pro", grupo: "dispositivo", tipo: "iphone", linha: "iPhone 14", condicao: "seminovo", adicionadoEm: "2026-09-25", modelos: [{ armazenamento: "128GB", preco: 2900, cores: ["Preto"] }, { armazenamento: "512GB", preco: 3150, cores: ["Dourado"] }] },
+    { slug: "max", nome: "iPhone 15 Pro Max", grupo: "dispositivo", tipo: "iphone", linha: "iPhone 15", condicao: "seminovo", adicionadoEm: "2026-09-25", modelos: [{ armazenamento: "256GB", preco: 4050, cores: ["Azul"] }] }
+  ];
+  assert.deepEqual(slugs(core.sortProducts(core.filterProducts(D, {}), "menor-preco")), ["pro", "max"]);
+  assert.deepEqual(slugs(core.sortProducts(core.filterProducts(D, {}), "maior-preco")), ["max", "pro"]);
+  assert.deepEqual(slugs(core.filterProducts(D, { min: 3000 })), ["max"]);
+  assert.deepEqual(slugs(core.filterProducts(D, { max: 3000 })), ["pro"]);
+});
+
+test("filterProducts: busca alcança capacidade e cores dos modelos", () => {
+  const D = [
+    { slug: "pro", nome: "iPhone 14 Pro", grupo: "dispositivo", tipo: "iphone", linha: "iPhone 14", condicao: "seminovo", adicionadoEm: "2026-09-25", modelos: [{ armazenamento: "512GB", preco: 3150, cores: ["Dourado"] }] }
+  ];
+  assert.deepEqual(slugs(core.filterProducts(D, { q: "512GB" })), ["pro"]);
+  assert.deepEqual(slugs(core.filterProducts(D, { q: "dourado" })), ["pro"]);
+  assert.deepEqual(slugs(core.filterProducts(D, { q: "128" })), []);
+});
+
+test("validateProduct: aceita modelos e valida seus campos", () => {
+  const ok = { slug: "x", nome: "X", grupo: "dispositivo", tipo: "iphone", condicao: "novo", adicionadoEm: "2026-09-25", imagens: ["a.svg"], modelos: [{ armazenamento: "128GB", preco: 100, cores: ["Preto"] }] };
+  assert.deepEqual(core.validateProduct(ok), []);
+  const bad = { slug: "x", nome: "X", grupo: "dispositivo", tipo: "iphone", condicao: "novo", adicionadoEm: "2026-09-25", imagens: ["a.svg"], modelos: [{ armazenamento: "128GB", preco: 0, cores: "Preto" }] };
+  assert.ok(core.validateProduct(bad).length > 0);
+  // sem modelos, exige preco no nível do produto
+  const semPreco = { slug: "x", nome: "X", grupo: "dispositivo", tipo: "iphone", condicao: "novo", adicionadoEm: "2026-09-25", imagens: ["a.svg"] };
+  assert.ok(core.validateProduct(semPreco).some((e) => e.includes("preco")));
+});
+
 test("stateToQuery: estado padrão gera string vazia", () => {
   assert.equal(core.stateToQuery({}), "");
   assert.equal(core.stateToQuery(core.DEFAULT_STATE), "");

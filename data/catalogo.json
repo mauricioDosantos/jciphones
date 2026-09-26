@@ -1,130 +1,243 @@
 {
-  "atualizadoEm": "2026-09-23",
+  "atualizadoEm": "2026-09-25",
   "produtos": [
     {
-      "slug": "iphone-15-pro-max-256gb-novo",
-      "nome": "iPhone 15 Pro Max 256GB",
+      "slug": "iphone-14",
+      "nome": "iPhone 14",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 14",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-14/01.webp",
+        "static/produtos/iphone-14/02.webp",
+        "static/produtos/iphone-14/03.webp",
+        "static/produtos/iphone-14/04.webp",
+        "static/produtos/iphone-14/05.webp",
+        "static/produtos/iphone-14/06.webp"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR" },
+        { "rotulo": "Resolução", "valor": "2532 × 1170 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A15 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "12MP + 12MP ultra-angular" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 2050, "cores": ["Lilás", "Preto", "Branco"] }
+      ]
+    },
+    {
+      "slug": "iphone-14-pro",
+      "nome": "iPhone 14 Pro",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 14",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-14-pro/01.webp",
+        "static/produtos/iphone-14-pro/02.webp",
+        "static/produtos/iphone-14-pro/03.webp"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2556 × 1179 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A16 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP + 12MP (zoom 3x)" },
+        { "rotulo": "Destaque", "valor": "Dynamic Island · Tela Sempre Ativa" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 2900, "cores": ["Preto"] },
+        { "armazenamento": "256GB", "preco": 3000, "cores": ["Preto", "Branco"] },
+        { "armazenamento": "512GB", "preco": 3150, "cores": ["Dourado"] }
+      ]
+    },
+    {
+      "slug": "iphone-14-pro-max",
+      "nome": "iPhone 14 Pro Max",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 14",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-14-pro-max/01.webp",
+        "static/produtos/iphone-14-pro-max/02.webp",
+        "static/produtos/iphone-14-pro-max/03.webp",
+        "static/produtos/iphone-14-pro-max/04.webp"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,7\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2796 × 1290 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A16 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP + 12MP (zoom 3x)" },
+        { "rotulo": "Destaque", "valor": "Dynamic Island · Tela Sempre Ativa" }
+      ],
+      "modelos": [
+        { "armazenamento": "256GB", "preco": 3350, "cores": ["Branco", "Dourado"] },
+        { "armazenamento": "512GB", "preco": 3600, "cores": ["Roxo", "Preto"] }
+      ]
+    },
+    {
+      "slug": "iphone-15",
+      "nome": "iPhone 15",
       "grupo": "dispositivo",
       "tipo": "iphone",
       "linha": "iPhone 15",
-      "condicao": "novo",
-      "preco": 7699,
-      "precoOriginal": 8999,
-      "parcelamento": "12x de R$ 641,58",
-      "estoque": 1,
-      "adicionadoEm": "2026-09-21",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-18",
       "imagens": [
-        "static/produtos/iphone-15-pro-max-256gb-novo/1.svg",
-        "static/produtos/iphone-15-pro-max-256gb-novo/2.svg",
-        "static/produtos/iphone-15-pro-max-256gb-novo/3.svg"
+        "static/produtos/iphone-15/01.webp",
+        "static/produtos/iphone-15/02.webp",
+        "static/produtos/iphone-15/03.webp",
+        "static/produtos/iphone-15/04.webp",
+        "static/produtos/iphone-15/05.webp",
+        "static/produtos/iphone-15/06.webp",
+        "static/produtos/iphone-15/07.webp",
+        "static/produtos/iphone-15/08.webp"
       ],
       "especificacoes": [
-        { "rotulo": "Armazenamento", "valor": "256GB" },
-        { "rotulo": "Cor", "valor": "Titânio Natural" },
-        { "rotulo": "Tela", "valor": "6,7\" Super Retina XDR" },
-        { "rotulo": "Chip", "valor": "A17 Pro" },
-        { "rotulo": "Câmera", "valor": "48MP + 12MP + 12MP" }
+        { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR" },
+        { "rotulo": "Resolução", "valor": "2556 × 1179 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A16 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP ultra-angular (zoom 2x)" },
+        { "rotulo": "Destaque", "valor": "Dynamic Island · USB-C" },
+        { "rotulo": "Bateria", "valor": "92%" }
       ],
-      "tags": ["Lacrado"]
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 2900, "cores": ["Preto", "Verde"] }
+      ]
     },
     {
-      "slug": "iphone-16-128gb-novo",
-      "nome": "iPhone 16 128GB",
+      "slug": "iphone-15-plus",
+      "nome": "iPhone 15 Plus",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 15",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-15-plus/01.webp",
+        "static/produtos/iphone-15-plus/02.webp",
+        "static/produtos/iphone-15-plus/03.webp",
+        "static/produtos/iphone-15-plus/04.webp",
+        "static/produtos/iphone-15-plus/05.webp",
+        "static/produtos/iphone-15-plus/06.webp",
+        "static/produtos/iphone-15-plus/07.webp",
+        "static/produtos/iphone-15-plus/08.webp"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,7\" OLED Super Retina XDR" },
+        { "rotulo": "Resolução", "valor": "2796 × 1290 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A16 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP ultra-angular (zoom 2x)" },
+        { "rotulo": "Destaque", "valor": "Dynamic Island · USB-C" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 2950, "cores": ["Preto"] }
+      ]
+    },
+    {
+      "slug": "iphone-15-pro",
+      "nome": "iPhone 15 Pro",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 15",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-15-pro/01.webp",
+        "static/produtos/iphone-15-pro/02.webp",
+        "static/produtos/iphone-15-pro/03.webp",
+        "static/produtos/iphone-15-pro/04.webp"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2556 × 1179 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A17 Pro" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "6 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP + 12MP (zoom 3x)" },
+        { "rotulo": "Destaque", "valor": "Titânio · Botão de Ação" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 3450, "cores": ["Preto", "Natural"] }
+      ]
+    },
+    {
+      "slug": "iphone-15-pro-max",
+      "nome": "iPhone 15 Pro Max",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 15",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-15-pro-max/01.webp",
+        "static/produtos/iphone-15-pro-max/02.webp",
+        "static/produtos/iphone-15-pro-max/03.webp",
+        "static/produtos/iphone-15-pro-max/04.webp",
+        "static/produtos/iphone-15-pro-max/05.webp",
+        "static/produtos/iphone-15-pro-max/06.webp"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,7\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2796 × 1290 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A17 Pro" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "6 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP + 12MP (zoom 5x)" },
+        { "rotulo": "Destaque", "valor": "Titânio · Botão de Ação" }
+      ],
+      "modelos": [
+        { "armazenamento": "256GB", "preco": 4050, "cores": ["Azul"] }
+      ]
+    },
+    {
+      "slug": "iphone-16",
+      "nome": "iPhone 16",
       "grupo": "dispositivo",
       "tipo": "iphone",
       "linha": "iPhone 16",
       "condicao": "novo",
-      "preco": 5999,
-      "parcelamento": "12x de R$ 499,92",
       "adicionadoEm": "2026-09-22",
       "imagens": [
-        "static/produtos/iphone-16-128gb-novo/1.svg"
+        "static/produtos/iphone-16/01.webp",
+        "static/produtos/iphone-16/02.webp",
+        "static/produtos/iphone-16/03.webp",
+        "static/produtos/iphone-16/04.webp",
+        "static/produtos/iphone-16/05.webp",
+        "static/produtos/iphone-16/06.webp",
+        "static/produtos/iphone-16/07.webp",
+        "static/produtos/iphone-16/08.webp",
+        "static/produtos/iphone-16/09.webp",
+        "static/produtos/iphone-16/10.webp",
+        "static/produtos/iphone-16/11.webp"
       ],
       "especificacoes": [
-        { "rotulo": "Armazenamento", "valor": "128GB" },
-        { "rotulo": "Cor", "valor": "Ultramarino" },
-        { "rotulo": "Tela", "valor": "6,1\" Super Retina XDR" },
-        { "rotulo": "Chip", "valor": "A18" }
+        { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR" },
+        { "rotulo": "Resolução", "valor": "2556 × 1179 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A18" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 12MP (zoom 2x)" },
+        { "rotulo": "Destaque", "valor": "Controle da Câmera · Wi-Fi 7" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 5999, "cores": ["Ultramarino"] }
       ],
       "tags": ["Lacrado"]
-    },
-    {
-      "slug": "iphone-15-128gb-seminovo",
-      "nome": "iPhone 15 128GB",
-      "grupo": "dispositivo",
-      "tipo": "iphone",
-      "linha": "iPhone 15",
-      "condicao": "seminovo",
-      "preco": 4299,
-      "estoque": 2,
-      "adicionadoEm": "2026-09-18",
-      "imagens": [
-        "static/produtos/iphone-15-128gb-seminovo/1.svg"
-      ],
-      "especificacoes": [
-        { "rotulo": "Armazenamento", "valor": "128GB" },
-        { "rotulo": "Bateria", "valor": "92%" },
-        { "rotulo": "Cor", "valor": "Preto" },
-        { "rotulo": "Estado", "valor": "Excelente, sem marcas de uso" }
-      ]
-    },
-    {
-      "slug": "iphone-13-128gb-seminovo",
-      "nome": "iPhone 13 128GB",
-      "grupo": "dispositivo",
-      "tipo": "iphone",
-      "linha": "iPhone 13",
-      "condicao": "seminovo",
-      "preco": 2799,
-      "precoOriginal": 3199,
-      "parcelamento": "10x de R$ 279,90",
-      "adicionadoEm": "2026-09-15",
-      "imagens": [
-        "static/produtos/iphone-13-128gb-seminovo/1.svg"
-      ],
-      "especificacoes": [
-        { "rotulo": "Armazenamento", "valor": "128GB" },
-        { "rotulo": "Bateria", "valor": "88%" },
-        { "rotulo": "Cor", "valor": "Meia-noite" }
-      ],
-      "tags": ["Promoção"]
-    },
-    {
-      "slug": "iphone-13-pro-256gb-seminovo",
-      "nome": "iPhone 13 Pro 256GB",
-      "grupo": "dispositivo",
-      "tipo": "iphone",
-      "linha": "iPhone 13",
-      "condicao": "seminovo",
-      "preco": 3599,
-      "estoque": 3,
-      "adicionadoEm": "2026-09-10",
-      "imagens": [
-        "static/produtos/iphone-13-pro-256gb-seminovo/1.svg"
-      ],
-      "especificacoes": [
-        { "rotulo": "Armazenamento", "valor": "256GB" },
-        { "rotulo": "Bateria", "valor": "86%" },
-        { "rotulo": "Cor", "valor": "Azul-sierra" }
-      ]
-    },
-    {
-      "slug": "iphone-11-64gb-seminovo",
-      "nome": "iPhone 11 64GB",
-      "grupo": "dispositivo",
-      "tipo": "iphone",
-      "linha": "iPhone 11",
-      "condicao": "seminovo",
-      "preco": 1699,
-      "estoque": 0,
-      "adicionadoEm": "2026-09-01",
-      "imagens": [
-        "static/produtos/iphone-11-64gb-seminovo/1.svg"
-      ],
-      "especificacoes": [
-        { "rotulo": "Armazenamento", "valor": "64GB" },
-        { "rotulo": "Bateria", "valor": "84%" }
-      ]
     },
     {
       "slug": "macbook-air-m2-256gb-seminovo",

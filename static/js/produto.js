@@ -8,6 +8,10 @@
   var slug = new URLSearchParams(location.search).get("p");
   bindBackLink();
 
+  var current = null;
+  var selModelo = 0;
+  var selCor = 0;
+
   function notFound() {
     document.title = "Produto não encontrado | JC Iphones";
     root.innerHTML =
@@ -22,23 +26,92 @@
     JC.bindWaLinks(root);
   }
 
-  function renderSpecs(p) {
-    if (!p.especificacoes || !p.especificacoes.length) return "";
-    return '<section class="pd-specs"><h2>Especificações técnicas</h2><dl>' +
-      p.especificacoes.map(function (e) {
-        return "<div><dt>" + JC.escapeHtml(e.rotulo) + "</dt><dd>" + JC.escapeHtml(e.valor) + "</dd></div>";
+  function selectedModelo() {
+    if (current && JCCore.hasModels(current)) return current.modelos[selModelo];
+    return null;
+  }
+
+  function selectedCor() {
+    var m = selectedModelo();
+    if (m && m.cores && m.cores.length) return m.cores[selCor];
+    return null;
+  }
+
+  function currentPrice() {
+    var m = selectedModelo();
+    return m ? m.preco : current.preco;
+  }
+
+  function renderVariants() {
+    var modelos = current.modelos;
+    var html = '<div class="pd-variants">';
+    html += '<div class="pd-variant"><span class="pd-variant-label">Capacidade</span><div class="pd-options">' +
+      modelos.map(function (m, i) {
+        return '<label class="chip"><input type="radio" name="modelo" value="' + i + '"' +
+          (i === selModelo ? ' checked' : '') + '><span>' + JC.escapeHtml(m.armazenamento) + '</span></label>';
       }).join("") +
-      "</dl></section>";
+      "</div></div>";
+    html += '<div class="pd-variant"><span class="pd-variant-label">Cor</span><div class="pd-options" id="pdCores">' +
+      renderCorOptions() +
+      "</div></div>";
+    html += "</div>";
+    return html;
+  }
+
+  function renderCorOptions() {
+    var m = selectedModelo();
+    var cores = (m && m.cores) || [];
+    return cores.map(function (c, i) {
+      return '<label class="chip"><input type="radio" name="cor" value="' + i + '"' +
+        (i === selCor ? ' checked' : '') + '><span>' + JC.escapeHtml(c) + '</span></label>';
+    }).join("");
+  }
+
+  function renderSpecs(p) {
+    var specs = (p.especificacoes || []).map(function (e) {
+      return "<div><dt>" + JC.escapeHtml(e.rotulo) + "</dt><dd>" + JC.escapeHtml(e.valor) + "</dd></div>";
+    });
+    if (JCCore.hasModels(p)) {
+      var m = selectedModelo();
+      var cor = selectedCor();
+      specs.push('<div><dt>Armazenamento</dt><dd id="specArm">' + JC.escapeHtml(m.armazenamento) + "</dd></div>");
+      if (cor) specs.push('<div><dt>Cor</dt><dd id="specCor">' + JC.escapeHtml(cor) + "</dd></div>");
+    }
+    if (!specs.length) return "";
+    return '<section class="pd-specs"><h2>Especificações técnicas</h2><dl>' + specs.join("") + "</dl></section>";
+  }
+
+  function priceBlock(p) {
+    var html = '<div class="price" id="pdPrice">';
+    if (JCCore.hasModels(p)) {
+      if (p.modelos.length > 1) html += '<span class="price-from">A partir de</span>';
+      html += '<strong class="price-now">' + JCCore.formatPrice(JCCore.minPrice(p)) + "</strong>";
+      html += '<small class="price-installments">' +
+        p.modelos.map(function (m) { return JC.escapeHtml(m.armazenamento); }).join(" · ") + "</small>";
+    } else {
+      var discount = JCCore.discountPercent(p);
+      if (discount) {
+        html += '<div class="price-old"><s>' + JCCore.formatPrice(p.precoOriginal) + '</s> <span class="tag tag-promo">-' + discount + "%</span></div>";
+      }
+      html += '<strong class="price-now">' + JCCore.formatPrice(p.preco) + "</strong>";
+      if (p.parcelamento) html += '<small class="price-installments">ou ' + JC.escapeHtml(p.parcelamento) + "</small>";
+    }
+    return html + "</div>";
   }
 
   function renderProduct(p) {
+    current = p;
+    selModelo = 0;
+    selCor = 0;
+
     root.innerHTML =
       '<div class="pd">' +
         renderGallery(p) +
         '<div class="pd-info">' +
           '<div class="pd-tags">' + JC.renderTags(p) + "</div>" +
           '<h1 class="pd-name">' + JC.escapeHtml(p.nome) + "</h1>" +
-          JC.renderPrice(p) +
+          (JCCore.hasModels(p) ? renderVariants() : "") +
+          priceBlock(p) +
           '<a class="btn btn-whatsapp btn-lg btn-block pd-cta" id="pdCta" data-wa-location="ficha" data-item-id="' + JC.escapeHtml(p.slug) + '"' +
           ' data-wa-text="' + JC.escapeHtml(JC.productMessage(p)) + '">' + JC.WA_ICON + "Garantir sua unidade</a>" +
           '<p class="pd-cta-note">Resposta rápida pelo WhatsApp · Seg a dom, 8h às 18h</p>' +
@@ -50,6 +123,48 @@
     JC.renderVantagens(document.getElementById("pdVantagens"), "compact");
     bindGallery();
     renderStickyBar(p);
+    bindVariants(p);
+    syncSelection();
+  }
+
+  function bindVariants(p) {
+    if (!JCCore.hasModels(p)) return;
+    root.addEventListener("change", function (e) {
+      if (e.target.name === "modelo") {
+        selModelo = Number(e.target.value);
+        selCor = 0;
+        var cores = document.getElementById("pdCores");
+        if (cores) cores.innerHTML = renderCorOptions();
+        syncSelection();
+      } else if (e.target.name === "cor") {
+        selCor = Number(e.target.value);
+        syncSelection();
+      }
+    });
+  }
+
+  function syncSelection() {
+    var p = current;
+    var modelo = selectedModelo();
+    var cor = selectedCor();
+    var price = currentPrice();
+    var msg = JC.productMessage(p, modelo, cor);
+
+    var priceEl = document.getElementById("pdPrice");
+    if (priceEl) priceEl.innerHTML = '<strong class="price-now">' + JCCore.formatPrice(price) + "</strong>";
+
+    var specArm = document.getElementById("specArm");
+    if (specArm && modelo) specArm.textContent = modelo.armazenamento;
+    var specCor = document.getElementById("specCor");
+    if (specCor && cor) specCor.textContent = cor;
+
+    var cta = document.getElementById("pdCta");
+    if (cta) { cta.setAttribute("data-wa-text", msg); cta.href = JC.waUrl(msg); }
+
+    var barCta = document.getElementById("pdBarCta");
+    if (barCta) { barCta.setAttribute("data-wa-text", msg); barCta.href = JC.waUrl(msg); }
+    var barPrice = document.getElementById("pdBarPrice");
+    if (barPrice) barPrice.textContent = JCCore.formatPrice(price);
   }
 
   // Celular: repete preço + CTA no rodapé enquanto o botão principal está fora da tela.
@@ -59,8 +174,8 @@
     var bar = document.createElement("div");
     bar.className = "pd-bar";
     bar.innerHTML =
-      '<div class="pd-bar-price"><small>' + JC.escapeHtml(p.nome) + "</small><strong>" + JCCore.formatPrice(p.preco) + "</strong></div>" +
-      '<a class="btn btn-whatsapp" data-wa-location="ficha_barra" data-item-id="' + JC.escapeHtml(p.slug) + '"' +
+      '<div class="pd-bar-price"><small>' + JC.escapeHtml(p.nome) + "</small><strong id=\"pdBarPrice\">" + JCCore.formatPrice(JCCore.minPrice(p)) + "</strong></div>" +
+      '<a class="btn btn-whatsapp" id="pdBarCta" data-wa-location="ficha_barra" data-item-id="' + JC.escapeHtml(p.slug) + '"' +
       ' data-wa-text="' + JC.escapeHtml(JC.productMessage(p)) + '">Garantir sua unidade</a>';
     document.body.appendChild(bar);
     document.body.classList.add("has-pd-bar");
@@ -154,7 +269,7 @@
 
   function updateMeta(p) {
     document.title = p.nome + " | JC Iphones";
-    var description = p.nome + " " + JC.CONDICAO_LABEL[p.condicao].toLowerCase() + " por " + JCCore.formatPrice(p.preco) +
+    var description = p.nome + " " + JC.CONDICAO_LABEL[p.condicao].toLowerCase() + " a partir de " + JCCore.formatPrice(JCCore.minPrice(p)) +
       " na JC Iphones, em José de Freitas - PI.";
     var meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", description);
@@ -170,8 +285,8 @@
       updateMeta(p);
       JC.track("view_item", {
         currency: "BRL",
-        value: p.preco,
-        items: [{ item_id: p.slug, item_name: p.nome, item_category: p.tipo, price: p.preco }]
+        value: JCCore.minPrice(p),
+        items: [{ item_id: p.slug, item_name: p.nome, item_category: p.tipo, price: JCCore.minPrice(p) }]
       });
     })
     .catch(function (err) {

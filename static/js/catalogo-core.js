@@ -24,8 +24,41 @@
       .trim();
   }
 
+  function hasModels(p) {
+    return Array.isArray(p.modelos) && p.modelos.length > 0;
+  }
+
+  function minPrice(p) {
+    if (hasModels(p)) {
+      return Math.min.apply(null, p.modelos.map(function (m) { return m.preco; }));
+    }
+    return p.preco;
+  }
+
+  function maxPrice(p) {
+    if (hasModels(p)) {
+      return Math.max.apply(null, p.modelos.map(function (m) { return m.preco; }));
+    }
+    return p.preco;
+  }
+
   function isAvailable(p) {
+    if (hasModels(p)) {
+      return p.modelos.some(function (m) { return Array.isArray(m.cores) && m.cores.length > 0; });
+    }
     return p.estoque == null || p.estoque > 0;
+  }
+
+  // Texto usado na busca: nome + linha + capacidades + cores disponíveis.
+  function searchText(p) {
+    var parts = [p.nome, p.linha];
+    if (hasModels(p)) {
+      p.modelos.forEach(function (m) {
+        parts.push(m.armazenamento);
+        (m.cores || []).forEach(function (c) { parts.push(c); });
+      });
+    }
+    return normalize(parts.join(" "));
   }
 
   function toPrice(value) {
@@ -60,11 +93,11 @@
       if (!isAvailable(p)) return false;
       if (s.grupo && p.grupo !== s.grupo) return false;
       if (words.length) {
-        var nome = normalize(p.nome);
+        var nome = searchText(p);
         for (var i = 0; i < words.length; i++) if (nome.indexOf(words[i]) === -1) return false;
       }
-      if (range.min !== null && p.preco < range.min) return false;
-      if (range.max !== null && p.preco > range.max) return false;
+      if (range.min !== null && minPrice(p) < range.min) return false;
+      if (range.max !== null && minPrice(p) > range.max) return false;
       if (s.linhas.length && s.linhas.indexOf(p.linha) === -1) return false;
       if (s.condicoes.length && s.condicoes.indexOf(p.condicao) === -1) return false;
       return true;
@@ -79,8 +112,8 @@
     "recente": function (a, b) {
       return String(b.adicionadoEm).localeCompare(String(a.adicionadoEm)) || byName(a, b);
     },
-    "menor-preco": function (a, b) { return a.preco - b.preco || byName(a, b); },
-    "maior-preco": function (a, b) { return b.preco - a.preco || byName(a, b); }
+    "menor-preco": function (a, b) { return minPrice(a) - minPrice(b) || byName(a, b); },
+    "maior-preco": function (a, b) { return minPrice(b) - minPrice(a) || byName(a, b); }
   };
 
   function sortProducts(products, ordem) {
@@ -122,7 +155,7 @@
       .filter(function (p) { return p.slug !== current.slug && isAvailable(p); })
       .sort(function (a, b) {
         return rank(a) - rank(b) ||
-          Math.abs(a.preco - current.preco) - Math.abs(b.preco - current.preco) ||
+          Math.abs(minPrice(a) - minPrice(current)) - Math.abs(minPrice(b) - minPrice(current)) ||
           byName(a, b);
       })
       .slice(0, limit == null ? 4 : limit);
@@ -176,7 +209,17 @@
     if (GRUPOS.indexOf(p.grupo) === -1) errors.push("grupo deve ser " + GRUPOS.join(" ou "));
     if (!isText(p.tipo)) errors.push("tipo ausente");
     if (CONDICOES.indexOf(p.condicao) === -1) errors.push("condicao deve ser " + CONDICOES.join(" ou "));
-    if (typeof p.preco !== "number" || !(p.preco > 0)) errors.push("preco deve ser um número maior que 0");
+    if (hasModels(p)) {
+      p.modelos.forEach(function (m, i) {
+        var n = i + 1;
+        if (!m || typeof m !== "object") { errors.push("modelo #" + n + " deve ser um objeto"); return; }
+        if (!isText(m.armazenamento)) errors.push("modelo #" + n + ": armazenamento ausente");
+        if (typeof m.preco !== "number" || !(m.preco > 0)) errors.push("modelo #" + n + ": preco deve ser um número maior que 0");
+        if (!Array.isArray(m.cores) || !m.cores.every(isText)) errors.push("modelo #" + n + ": cores deve ser uma lista de textos");
+      });
+    } else if (typeof p.preco !== "number" || !(p.preco > 0)) {
+      errors.push("preco deve ser um número maior que 0");
+    }
     if (!isText(p.adicionadoEm) || !/^\d{4}-\d{2}-\d{2}$/.test(p.adicionadoEm)) errors.push("adicionadoEm deve estar no formato AAAA-MM-DD");
     if (!Array.isArray(p.imagens) || !p.imagens.length || !p.imagens.every(isText)) errors.push("imagens deve ter pelo menos 1 caminho");
     if (p.linha !== undefined && (!isText(p.linha) || p.linha.indexOf(",") !== -1)) errors.push("linha não pode ser vazia nem conter vírgula");
@@ -197,6 +240,9 @@
     DEFAULT_STATE: DEFAULT_STATE,
     normalize: normalize,
     isAvailable: isAvailable,
+    hasModels: hasModels,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
     toPrice: toPrice,
     normalizePriceRange: normalizePriceRange,
     filterProducts: filterProducts,

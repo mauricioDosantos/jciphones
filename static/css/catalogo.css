@@ -480,6 +480,19 @@ html:not(.js) .catalog-toolbar { display: none; }
 .pd-info .price-now { font-size: clamp(1.9rem, 5.5vw, 2.4rem); }
 .pd-info .price-installments { font-size: 15px; }
 
+.price-from {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.pd-variants { display: flex; flex-direction: column; gap: 16px; margin-top: 2px; }
+.pd-variant { display: flex; flex-direction: column; gap: 10px; }
+.pd-variant-label { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+.pd-options { display: flex; flex-wrap: wrap; gap: 8px; }
+
 .pd-cta { margin-top: 6px; }
 .pd-cta svg { width: 22px; height: 22px; }
 .btn-whatsapp.pd-cta { box-shadow: 0 12px 30px -12px rgba(37, 211, 102, 0.8); }
