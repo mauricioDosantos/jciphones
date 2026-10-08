@@ -132,8 +132,7 @@
         "static/produtos/iphone-15-plus/04.webp",
         "static/produtos/iphone-15-plus/05.webp",
         "static/produtos/iphone-15-plus/06.webp",
-        "static/produtos/iphone-15-plus/07.webp",
-        "static/produtos/iphone-15-plus/08.webp"
+        "static/produtos/iphone-15-plus/07.webp"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,7\" OLED Super Retina XDR" },
@@ -240,6 +239,172 @@
       "tags": ["Lacrado"]
     },
     {
+      "slug": "iphone-13",
+      "nome": "iPhone 13",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 13",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-13/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR" },
+        { "rotulo": "Resolução", "valor": "2532 × 1170 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A15 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "4 núcleos" },
+        { "rotulo": "Câmera", "valor": "12MP + 12MP ultra-angular" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 2200, "cores": ["Meia-noite", "Estelar", "Azul", "Rosa", "Verde", "Vermelho"] }
+      ]
+    },
+    {
+      "slug": "iphone-14-plus",
+      "nome": "iPhone 14 Plus",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 14",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-14-plus/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,7\" OLED Super Retina XDR" },
+        { "rotulo": "Resolução", "valor": "2778 × 1284 px (458 ppi)" },
+        { "rotulo": "Chip", "valor": "A15 Bionic" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "12MP + 12MP ultra-angular" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 2650, "cores": ["Meia-noite", "Estelar", "Azul", "Roxo", "Amarelo", "Vermelho"] }
+      ]
+    },
+    {
+      "slug": "iphone-16-pro",
+      "nome": "iPhone 16 Pro",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 16",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-16-pro/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,3\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2622 × 1206 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A18 Pro" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "6 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 48MP + 48MP (zoom 5x)" },
+        { "rotulo": "Destaque", "valor": "Titânio · Controle da Câmera" }
+      ],
+      "modelos": [
+        { "armazenamento": "128GB", "preco": 4800, "cores": ["Titânio Preto", "Titânio Branco", "Titânio Natural", "Titânio Deserto"] }
+      ]
+    },
+    {
+      "slug": "iphone-16-pro-max",
+      "nome": "iPhone 16 Pro Max",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 16",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-16-pro-max/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,9\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2868 × 1320 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A18 Pro" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "6 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 48MP + 48MP (zoom 5x)" },
+        { "rotulo": "Destaque", "valor": "Titânio · Controle da Câmera" }
+      ],
+      "modelos": [
+        { "armazenamento": "256GB", "preco": 5500, "cores": ["Titânio Preto", "Titânio Branco", "Titânio Natural", "Titânio Deserto"] }
+      ]
+    },
+    {
+      "slug": "iphone-17",
+      "nome": "iPhone 17",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 17",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-17/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,3\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2622 × 1206 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A19" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "5 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 48MP (zoom 2x)" },
+        { "rotulo": "Destaque", "valor": "Ceramic Shield 2 · Wi-Fi 7" }
+      ],
+      "modelos": [
+        { "armazenamento": "256GB", "preco": 5500, "cores": ["Preto", "Branco", "Azul-névoa", "Sálvia", "Lavanda"] }
+      ]
+    },
+    {
+      "slug": "iphone-17-pro",
+      "nome": "iPhone 17 Pro",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 17",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-17-pro/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,3\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2622 × 1206 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A19 Pro" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "6 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 48MP + 48MP (zoom 8x)" },
+        { "rotulo": "Destaque", "valor": "Alumínio forjado · Câmera frontal 18MP" }
+      ],
+      "modelos": [
+        { "armazenamento": "256GB", "preco": 7300, "cores": ["Prateado", "Laranja Cósmico", "Azul Escuro"] }
+      ]
+    },
+    {
+      "slug": "iphone-17-pro-max",
+      "nome": "iPhone 17 Pro Max",
+      "grupo": "dispositivo",
+      "tipo": "iphone",
+      "linha": "iPhone 17",
+      "condicao": "seminovo",
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/iphone-17-pro-max/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Tela", "valor": "6,9\" OLED Super Retina XDR · ProMotion 120Hz" },
+        { "rotulo": "Resolução", "valor": "2868 × 1320 px (460 ppi)" },
+        { "rotulo": "Chip", "valor": "A19 Pro" },
+        { "rotulo": "CPU", "valor": "6 núcleos" },
+        { "rotulo": "GPU", "valor": "6 núcleos" },
+        { "rotulo": "Câmera", "valor": "48MP + 48MP + 48MP (zoom 8x)" },
+        { "rotulo": "Destaque", "valor": "Alumínio forjado · Câmera frontal 18MP" }
+      ],
+      "modelos": [
+        { "armazenamento": "256GB", "preco": 7800, "cores": ["Prateado", "Laranja Cósmico", "Azul Escuro"] }
+      ]
+    },
+    {
       "slug": "macbook-air-m2-256gb-seminovo",
       "nome": "MacBook Air M2 13\" 256GB",
       "grupo": "dispositivo",
@@ -344,6 +509,99 @@
         { "rotulo": "Conector", "valor": "USB-C" }
       ],
       "tags": ["Original"]
+    },
+    {
+      "slug": "fonte-apple-original",
+      "nome": "Fonte Apple Original",
+      "grupo": "acessorio",
+      "tipo": "carregador",
+      "condicao": "novo",
+      "preco": 199.99,
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/fonte-apple-original/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Garantia", "valor": "1 ano" }
+      ],
+      "tags": ["Original"]
+    },
+    {
+      "slug": "carregador-completo-maston",
+      "nome": "Carregador Completo Maston",
+      "grupo": "acessorio",
+      "tipo": "carregador",
+      "condicao": "novo",
+      "preco": 89.90,
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/carregador-completo-maston/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Conteúdo", "valor": "Adaptador + cabo" }
+      ]
+    },
+    {
+      "slug": "cabo-usb-c-usb-c",
+      "nome": "Cabo USB-C para USB-C",
+      "grupo": "acessorio",
+      "tipo": "cabo",
+      "condicao": "novo",
+      "preco": 69.90,
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/cabo-usb-c-usb-c/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Conector", "valor": "USB-C para USB-C" }
+      ]
+    },
+    {
+      "slug": "cabo-usb-c-lightning",
+      "nome": "Cabo USB-C para Lightning",
+      "grupo": "acessorio",
+      "tipo": "cabo",
+      "condicao": "novo",
+      "preco": 59.90,
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/cabo-usb-c-lightning/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Conector", "valor": "USB-C para Lightning" }
+      ]
+    },
+    {
+      "slug": "fone-ol-gold-premium",
+      "nome": "Fone Ol' Gold Premium",
+      "grupo": "acessorio",
+      "tipo": "fone",
+      "condicao": "novo",
+      "preco": 79.90,
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/fone-ol-gold-premium/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Conexão", "valor": "Bluetooth" },
+        { "rotulo": "Tipo", "valor": "Sem fio" }
+      ]
+    },
+    {
+      "slug": "carregador-portatil-10000mah",
+      "nome": "Carregador Portátil 10000mAh",
+      "grupo": "acessorio",
+      "tipo": "carregador",
+      "condicao": "novo",
+      "preco": 149.90,
+      "adicionadoEm": "2026-09-25",
+      "imagens": [
+        "static/produtos/carregador-portatil-10000mah/1.svg"
+      ],
+      "especificacoes": [
+        { "rotulo": "Capacidade", "valor": "10000mAh" },
+        { "rotulo": "Conector", "valor": "USB-C" }
+      ]
     }
   ]
 }
