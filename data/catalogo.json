@@ -247,7 +247,14 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-13/1.svg"
+        "static/produtos/iphone-13/01.jpg",
+        "static/produtos/iphone-13/02.jpg",
+        "static/produtos/iphone-13/03.jpg",
+        "static/produtos/iphone-13/04.jpg",
+        "static/produtos/iphone-13/05.jpg",
+        "static/produtos/iphone-13/06.jpg",
+        "static/produtos/iphone-13/07.jpg",
+        "static/produtos/iphone-13/08.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,1\" OLED Super Retina XDR" },
@@ -270,7 +277,11 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-14-plus/1.svg"
+        "static/produtos/iphone-14-plus/01.jpg",
+        "static/produtos/iphone-14-plus/02.jpg",
+        "static/produtos/iphone-14-plus/03.jpg",
+        "static/produtos/iphone-14-plus/04.jpg",
+        "static/produtos/iphone-14-plus/05.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,7\" OLED Super Retina XDR" },
@@ -293,7 +304,15 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-16-pro/1.svg"
+        "static/produtos/iphone-16-pro/01.jpg",
+        "static/produtos/iphone-16-pro/02.jpg",
+        "static/produtos/iphone-16-pro/03.jpg",
+        "static/produtos/iphone-16-pro/04.jpg",
+        "static/produtos/iphone-16-pro/05.jpg",
+        "static/produtos/iphone-16-pro/06.jpg",
+        "static/produtos/iphone-16-pro/07.jpg",
+        "static/produtos/iphone-16-pro/08.jpg",
+        "static/produtos/iphone-16-pro/09.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,3\" OLED Super Retina XDR · ProMotion 120Hz" },
@@ -317,7 +336,12 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-16-pro-max/1.svg"
+        "static/produtos/iphone-16-pro-max/01.jpg",
+        "static/produtos/iphone-16-pro-max/02.jpg",
+        "static/produtos/iphone-16-pro-max/03.jpg",
+        "static/produtos/iphone-16-pro-max/04.jpg",
+        "static/produtos/iphone-16-pro-max/05.jpg",
+        "static/produtos/iphone-16-pro-max/06.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,9\" OLED Super Retina XDR · ProMotion 120Hz" },
@@ -341,7 +365,11 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-17/1.svg"
+        "static/produtos/iphone-17/01.jpg",
+        "static/produtos/iphone-17/02.jpg",
+        "static/produtos/iphone-17/03.jpg",
+        "static/produtos/iphone-17/04.jpg",
+        "static/produtos/iphone-17/05.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,3\" OLED Super Retina XDR · ProMotion 120Hz" },
@@ -365,7 +393,11 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-17-pro/1.svg"
+        "static/produtos/iphone-17-pro/01.jpg",
+        "static/produtos/iphone-17-pro/02.jpg",
+        "static/produtos/iphone-17-pro/03.jpg",
+        "static/produtos/iphone-17-pro/04.jpg",
+        "static/produtos/iphone-17-pro/05.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,3\" OLED Super Retina XDR · ProMotion 120Hz" },
@@ -389,7 +421,13 @@
       "condicao": "seminovo",
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/iphone-17-pro-max/1.svg"
+        "static/produtos/iphone-17-pro-max/01.jpg",
+        "static/produtos/iphone-17-pro-max/02.jpg",
+        "static/produtos/iphone-17-pro-max/03.jpg",
+        "static/produtos/iphone-17-pro-max/04.jpg",
+        "static/produtos/iphone-17-pro-max/05.jpg",
+        "static/produtos/iphone-17-pro-max/06.jpg",
+        "static/produtos/iphone-17-pro-max/07.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tela", "valor": "6,9\" OLED Super Retina XDR · ProMotion 120Hz" },
@@ -415,7 +453,10 @@
       "parcelamento": "12x de R$ 458,25",
       "adicionadoEm": "2026-09-12",
       "imagens": [
-        "static/produtos/macbook-air-m2-256gb-seminovo/1.svg"
+        "static/produtos/macbook-air-m2-256gb-seminovo/01.jpg",
+        "static/produtos/macbook-air-m2-256gb-seminovo/02.jpg",
+        "static/produtos/macbook-air-m2-256gb-seminovo/03.jpg",
+        "static/produtos/macbook-air-m2-256gb-seminovo/04.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Chip", "valor": "Apple M2" },
@@ -433,7 +474,9 @@
       "preco": 699,
       "adicionadoEm": "2026-09-05",
       "imagens": [
-        "static/produtos/caixa-jbl-flip-6-novo/1.svg"
+        "static/produtos/caixa-jbl-flip-6-novo/01.webp",
+        "static/produtos/caixa-jbl-flip-6-novo/02.webp",
+        "static/produtos/caixa-jbl-flip-6-novo/03.webp"
       ],
       "especificacoes": [
         { "rotulo": "Potência", "valor": "30W RMS" },
@@ -452,7 +495,11 @@
       "precoOriginal": 1899,
       "adicionadoEm": "2026-09-20",
       "imagens": [
-        "static/produtos/airpods-pro-2-novo/1.svg"
+        "static/produtos/airpods-pro-2-novo/01.jpg",
+        "static/produtos/airpods-pro-2-novo/02.jpg",
+        "static/produtos/airpods-pro-2-novo/03.jpg",
+        "static/produtos/airpods-pro-2-novo/04.jpg",
+        "static/produtos/airpods-pro-2-novo/05.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Cancelamento de ruído", "valor": "Sim" },
@@ -472,7 +519,8 @@
       "estoque": 1,
       "adicionadoEm": "2026-09-17",
       "imagens": [
-        "static/produtos/apple-watch-series-9-45mm-seminovo/1.svg"
+        "static/produtos/apple-watch-series-9-45mm-seminovo/01.jpg",
+        "static/produtos/apple-watch-series-9-45mm-seminovo/02.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Tamanho", "valor": "45mm" },
@@ -489,7 +537,14 @@
       "preco": 89,
       "adicionadoEm": "2026-09-19",
       "imagens": [
-        "static/produtos/capa-silicone-iphone-15/1.svg"
+        "static/produtos/capa-silicone-iphone-15/01.jpg",
+        "static/produtos/capa-silicone-iphone-15/02.jpg",
+        "static/produtos/capa-silicone-iphone-15/03.jpg",
+        "static/produtos/capa-silicone-iphone-15/04.jpg",
+        "static/produtos/capa-silicone-iphone-15/05.jpg",
+        "static/produtos/capa-silicone-iphone-15/06.jpg",
+        "static/produtos/capa-silicone-iphone-15/07.jpg",
+        "static/produtos/capa-silicone-iphone-15/08.jpg"
       ]
     },
     {
@@ -502,7 +557,9 @@
       "parcelamento": "3x de R$ 49,67",
       "adicionadoEm": "2026-09-08",
       "imagens": [
-        "static/produtos/carregador-apple-20w-usb-c/1.svg"
+        "static/produtos/carregador-apple-20w-usb-c/01.jpg",
+        "static/produtos/carregador-apple-20w-usb-c/02.jpg",
+        "static/produtos/carregador-apple-20w-usb-c/03.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Potência", "valor": "20W" },
@@ -519,7 +576,9 @@
       "preco": 199.99,
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/fonte-apple-original/1.svg"
+        "static/produtos/fonte-apple-original/01.jpg",
+        "static/produtos/fonte-apple-original/02.jpg",
+        "static/produtos/fonte-apple-original/03.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Garantia", "valor": "1 ano" }
@@ -535,7 +594,8 @@
       "preco": 89.90,
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/carregador-completo-maston/1.svg"
+        "static/produtos/carregador-completo-maston/01.jpg",
+        "static/produtos/carregador-completo-maston/02.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Conteúdo", "valor": "Adaptador + cabo" }
@@ -550,7 +610,10 @@
       "preco": 69.90,
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/cabo-usb-c-usb-c/1.svg"
+        "static/produtos/cabo-usb-c-usb-c/01.webp",
+        "static/produtos/cabo-usb-c-usb-c/02.webp",
+        "static/produtos/cabo-usb-c-usb-c/03.webp",
+        "static/produtos/cabo-usb-c-usb-c/04.webp"
       ],
       "especificacoes": [
         { "rotulo": "Conector", "valor": "USB-C para USB-C" }
@@ -565,7 +628,10 @@
       "preco": 59.90,
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/cabo-usb-c-lightning/1.svg"
+        "static/produtos/cabo-usb-c-lightning/01.jpg",
+        "static/produtos/cabo-usb-c-lightning/02.jpg",
+        "static/produtos/cabo-usb-c-lightning/03.jpg",
+        "static/produtos/cabo-usb-c-lightning/04.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Conector", "valor": "USB-C para Lightning" }
@@ -580,7 +646,8 @@
       "preco": 79.90,
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/fone-ol-gold-premium/1.svg"
+        "static/produtos/fone-ol-gold-premium/01.webp",
+        "static/produtos/fone-ol-gold-premium/02.webp"
       ],
       "especificacoes": [
         { "rotulo": "Conexão", "valor": "Bluetooth" },
@@ -596,7 +663,9 @@
       "preco": 149.90,
       "adicionadoEm": "2026-09-25",
       "imagens": [
-        "static/produtos/carregador-portatil-10000mah/1.svg"
+        "static/produtos/carregador-portatil-10000mah/01.jpg",
+        "static/produtos/carregador-portatil-10000mah/02.jpg",
+        "static/produtos/carregador-portatil-10000mah/03.jpg"
       ],
       "especificacoes": [
         { "rotulo": "Capacidade", "valor": "10000mAh" },
